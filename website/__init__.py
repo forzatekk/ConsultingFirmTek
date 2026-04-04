@@ -9,11 +9,22 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
 
 
-# Initialize extensions
+# Initialize extensions (shared across all modules via import)
 db = SQLAlchemy()
 csrf = CSRFProtect()
 login_manager = LoginManager()
 migrate = Migrate()
+
+# Redirect unauthenticated users who hit @login_required routes
+login_manager.login_view = "auth.login"
+login_manager.login_message_category = "error"
+
+
+@login_manager.user_loader
+def load_user(user_id: str):
+    """Return the User object for the given primary key (called by Flask-Login)."""
+    from .models import User
+    return User.query.get(int(user_id))
 
 
 def create_app() -> Flask:
@@ -35,9 +46,11 @@ def create_app() -> Flask:
     migrate.init_app(app, db)
 
     # Register blueprints
+    from .views import views as views_blueprint
     from .auth import auth as auth_blueprint
     from .client_dashboard import client as client_blueprint
 
+    app.register_blueprint(views_blueprint)
     app.register_blueprint(auth_blueprint)
     app.register_blueprint(client_blueprint)
 

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Contact – Tek Consulting{% endblock %}
+{% block meta_description %}Get in touch with Tek Consulting to discuss your next project.{% endblock %}
+
+{% block content %}
+<section class="contact-section">
+  <h2>Get in Touch</h2>
+  <p style="text-align: center; color: var(--color-muted); margin-bottom: 2rem;">
+    Have a project in mind? We'd love to hear about it.
+  </p>
+
+  <form method="POST"
+        action="{{ url_for('views.contact') }}"
+        enctype="multipart/form-data"
+        class="contact-form"
+        novalidate>
+
+    {# CSRF token required by Flask-WTF #}
+    {{ form.hidden_tag() }}
+
+    <!-- Name -->
+    {{ form.name.label }}
+    {{ form.name(id="name", placeholder="Your full name") }}
+    {% for error in form.name.errors %}
+      <span class="field-errors">{{ error }}</span>
+    {% endfor %}
+
+    <!-- Email -->
+    {{ form.email.label }}
+    {{ form.email(id="email", placeholder="you@example.com") }}
+    {% for error in form.email.errors %}
+      <span class="field-errors">{{ error }}</span>
+    {% endfor %}
+
+    <!-- Message -->
+    {{ form.message.label }}
+    {{ form.message(id="message", placeholder="Describe your project or question…") }}
+    {% for error in form.message.errors %}
+      <span class="field-errors">{{ error }}</span>
+    {% endfor %}
+
+    <!-- File Attachment with drag-and-drop -->
+    <label>
+      Attachment
+      <em style="font-weight: normal; color: var(--color-muted);">(optional)</em>
+    </label>
+    <div id="drop-area">
+      <p>Drag &amp; drop files here, or <span id="file-select">browse files</span></p>
+      {# style="display:none" hides the input visually; JS triggers it on click #}
+      {{ form.file(id="file", style="display:none", multiple=True) }}
+      <ul class="file-list" id="file-list"></ul>
+    </div>
+    {% for error in form.file.errors %}
+      <span class="field-errors">{{ error }}</span>
+    {% endfor %}
+
+    <!-- Submit -->
+    {{ form.submit(class="button") }}
+
+  </form>
+</section>
+{% endblock %}

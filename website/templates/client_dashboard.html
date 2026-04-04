@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard – Tek Consulting{% endblock %}
+
+{% block content %}
+<section class="dashboard-section">
+  <h1>Welcome, {{ current_user.email }}</h1>
+
+  <!-- File Upload Card -->
+  <div class="dashboard-card">
+    <h2>Upload Documents</h2>
+    <p style="color: var(--color-muted); margin-bottom: 1rem;">
+      Share project files, briefs, or assets with your consulting team.
+    </p>
+
+    <form method="POST"
+          action="{{ url_for('client.dashboard') }}"
+          enctype="multipart/form-data"
+          id="upload-form">
+      {# CSRF token injected by Flask-WTF's CSRFProtect #}
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
+      <div id="drop-area">
+        <p>Drag &amp; drop files here, or <span id="file-select">browse files</span></p>
+        <input type="file" id="file" name="file[]" multiple style="display:none" />
+        <ul class="file-list" id="file-list"></ul>
+      </div>
+
+      <button type="submit" class="button" style="margin-top: 1rem;">
+        Upload Files
+      </button>
+    </form>
+  </div>
+
+  <!-- Account Details Card -->
+  <div class="dashboard-card">
+    <h2>Account Details</h2>
+    <p><strong>Email:</strong> {{ current_user.email }}</p>
+    <p style="margin-top: 0.5rem;">
+      <strong>Role:</strong> {{ current_user.role | capitalize }}
+    </p>
+    <a href="{{ url_for('auth.logout') }}"
+       class="button"
+       style="margin-top: 1.5rem; display: inline-block;">
+      Log Out
+    </a>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Portfolio – Tek Consulting{% endblock %}
+{% block meta_description %}Browse Tek Consulting's portfolio of delivered software, web, and mobile projects.{% endblock %}
+
+{% block content %}
+<section id="portfolio">
+  <h2>Our Portfolio</h2>
+  <p>A selection of projects we've delivered across various industries.</p>
+
+  <!-- Static portfolio items (images from static/images/) -->
+  <div class="portfolio-grid">
+
+    <div class="portfolio-item">
+      <img src="{{ url_for('static', filename='images/project1.jpg') }}"
+           alt="Inventory Management App" class="portfolio-image" />
+      <h3>Inventory Management App</h3>
+      <p>Improved stock management efficiency by 30% for a growing retail client.</p>
+    </div>
+
+    <div class="portfolio-item">
+      <img src="{{ url_for('static', filename='images/project2.jpg') }}"
+           alt="E-commerce Platform" class="portfolio-image" />
+      <h3>E-commerce Platform</h3>
+      <p>Built a scalable platform that boosted client sales by 40% in six months.</p>
+    </div>
+
+    <div class="portfolio-item">
+      <img src="{{ url_for('static', filename='images/project3.jpg') }}"
+           alt="Mobile Banking App" class="portfolio-image" />
+      <h3>Mobile Banking App</h3>
+      <p>Delivered a secure, user-friendly mobile banking app for a financial institution.</p>
+    </div>
+
+  </div>
+
+  <!-- Dynamic items injected from portfolio.json via script.js -->
+  <h2 style="margin-top: 3rem;">More Projects</h2>
+  <div id="portfolio-items"></div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+{# Pass the JSON URL to script.js using url_for so the path is always correct. #}
+<script>
+  window.PORTFOLIO_JSON_URL = "{{ url_for('static', filename='data/portfolio.json') }}";
+</script>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Services – Tek Consulting{% endblock %}
+{% block meta_description %}Explore Tek Consulting's full range of services: IT consulting, software, web, mobile, AI, DevOps, and more.{% endblock %}
+
+{% block content %}
+<section id="services" style="padding: 3rem 2rem; max-width: 900px; margin: 0 auto;">
+  <h2 style="font-size: 2rem; color: var(--color-primary); margin-bottom: 2rem; text-align: center;">
+    Our Services
+  </h2>
+
+  <div class="service-section">
+    <h3>IT Consulting</h3>
+    <p>Strategic IT guidance to streamline operations and enhance efficiency across your organisation.</p>
+  </div>
+
+  <div class="service-section">
+    <h3>Software Development</h3>
+    <p>End-to-end custom software solutions tailored to your business needs, from design through deployment.</p>
+  </div>
+
+  <div class="service-section">
+    <h3>Web Development</h3>
+    <p>Design and development of responsive, modern, and secure websites and web applications.</p>
+  </div>
+
+  <div class="service-section">
+    <h3>Mobile Development</h3>
+    <p>Native and cross-platform mobile applications for iOS and Android to expand your reach.</p>
+  </div>
+
+  <div class="service-section">
+    <h3>UI/UX Design</h3>
+    <p>Engaging, accessible, and user-friendly interfaces for a seamless user experience.</p>
+  </div>
+
+  <div class="service-section">
+    <h3>Quality Assurance</h3>
+    <p>Comprehensive testing strategies that ensure high-quality standards and smooth functionality.</p>
+  </div>
+
+  <div class="service-section">
+    <h3>Machine Learning &amp; AI</h3>
+    <p>Leveraging AI, machine learning, and data science to drive innovation and extract actionable insights.</p>
+  </div>
+
+  <div class="service-section">
+    <h3>DevOps Services</h3>
+    <p>CI/CD pipelines, infrastructure-as-code, and efficient delivery workflows for faster, safer releases.</p>
+  </div>
+
+  <div class="service-section">
+    <h3>Support &amp; Maintenance</h3>
+    <p>Ongoing support and maintenance contracts for consistent performance and rapid issue resolution.</p>
+  </div>
+
+  <div style="text-align: center; margin-top: 2rem;">
+    <a href="{{ url_for('views.contact') }}" class="cta-button">Discuss a Project</a>
+  </div>
+</section>
+{% endblock %}

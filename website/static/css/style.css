@@ -1,0 +1,706 @@
+/* ===================================================================
+   Tek Consulting – Main Stylesheet
+   All global styles are defined here; only true mobile overrides
+   live inside media queries.
+   =================================================================== */
+
+/* --- 1. CSS Custom Properties ------------------------------------ */
+:root {
+  --color-primary:     #1a73e8;
+  --color-primary-dk:  #155ab7;
+  --color-dark:        #333333;
+  --color-light-bg:    #f4f4f9;
+  --color-card-bg:     #ffffff;
+  --color-border:      #dddddd;
+  --color-muted:       #555555;
+  --color-success-bg:  #d4edda;
+  --color-success-tx:  #155724;
+  --color-error-bg:    #f8d7da;
+  --color-error-tx:    #721c24;
+  --spacing-sm:        0.5rem;
+  --spacing-md:        1rem;
+  --spacing-lg:        2rem;
+  --spacing-xl:        3rem;
+  --radius:            8px;
+  --shadow:            0 4px 8px rgba(0, 0, 0, 0.1);
+  --transition:        0.3s ease;
+}
+
+/* --- 2. Reset & Box-Sizing --------------------------------------- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* --- 3. Base HTML & Body ----------------------------------------- */
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  color: var(--color-dark);
+  background-color: var(--color-light-bg);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+/* --- 4. Navbar ---------------------------------------------------- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background-color: var(--color-card-bg);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar .logo img {
+  height: 50px;
+}
+
+.navbar .logo a {
+  display: inline-block;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a,
+.nav-auth a {
+  color: var(--color-dark);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transition);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--color-primary);
+}
+
+.nav-auth {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+/* --- 5. Buttons --------------------------------------------------- */
+.button,
+.cta-button {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  color: #ffffff;
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color var(--transition);
+}
+
+.button:hover,
+.cta-button:hover {
+  background-color: var(--color-primary-dk);
+}
+
+/* --- 6. Flash Messages ------------------------------------------- */
+.flash-messages {
+  padding: var(--spacing-sm) var(--spacing-lg);
+}
+
+.flash {
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  margin-bottom: var(--spacing-sm);
+  font-weight: 500;
+}
+
+.flash.success { background-color: var(--color-success-bg); color: var(--color-success-tx); }
+.flash.error   { background-color: var(--color-error-bg);   color: var(--color-error-tx); }
+
+/* --- 7. Hero Section --------------------------------------------- */
+.hero {
+  background-image: url('../images/hero-background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-color: #0d47a1; /* fallback colour when image is missing */
+  color: #ffffff;
+  text-align: center;
+  padding: 5rem 2rem;
+  position: relative;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-md);
+  min-height: 3rem; /* reserves space while typewriter initialises */
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Typewriter cursor blink */
+#typewriter::after {
+  content: '|';
+  animation: blink 0.8s step-end infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* --- 8. Service Cards (3-D Flip) --------------------------------- */
+.services {
+  text-align: center;
+  padding: var(--spacing-xl) var(--spacing-lg);
+  background-color: #f9fafb;
+}
+
+.services h2 {
+  font-size: 2rem;
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-primary);
+}
+
+.service-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.service-card {
+  width: 220px;
+  height: 160px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.service-card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md);
+  text-align: center;
+}
+
+.card-front {
+  background-color: var(--color-card-bg);
+  box-shadow: var(--shadow);
+}
+
+.card-back {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  transform: rotateY(180deg);
+}
+
+/* Flat service card – used on the Services page */
+.service-section {
+  background-color: #f8faff;
+  border: 1px solid #e3eaf0;
+  padding: 1.5rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  text-align: left;
+}
+
+.service-section h3 {
+  font-size: 1.3rem;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.service-section h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.service-section h3 a:hover {
+  text-decoration: underline;
+}
+
+.service-section p {
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
+/* --- 9. Portfolio ------------------------------------------------- */
+.portfolio-section,
+#portfolio {
+  padding: var(--spacing-xl) var(--spacing-lg);
+  text-align: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.portfolio-section h2,
+#portfolio h2 {
+  font-size: 2rem;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.portfolio-section > p,
+#portfolio > p {
+  color: var(--color-muted);
+  margin-bottom: var(--spacing-lg);
+}
+
+.portfolio-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.portfolio-item {
+  background-color: var(--color-card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  width: 300px;
+  overflow: hidden;
+  text-align: left;
+  transition: transform var(--transition);
+}
+
+.portfolio-item:hover {
+  transform: translateY(-5px);
+}
+
+.portfolio-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.portfolio-item h3 {
+  font-size: 1.1rem;
+  color: var(--color-primary);
+  padding: var(--spacing-md) var(--spacing-md) 0;
+}
+
+.portfolio-item p {
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  padding: var(--spacing-sm) var(--spacing-md) var(--spacing-md);
+  line-height: 1.5;
+}
+
+/* Dynamic items injected by JS */
+#portfolio-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: var(--spacing-lg);
+}
+
+/* --- 10. Testimonials -------------------------------------------- */
+.testimonials {
+  text-align: center;
+  padding: var(--spacing-xl) var(--spacing-lg);
+  background-color: #f9fafb;
+}
+
+.testimonials h2 {
+  font-size: 2rem;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-lg);
+}
+
+.testimonial-carousel {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  border-radius: var(--radius);
+}
+
+.testimonial {
+  min-width: 100%;
+  padding: var(--spacing-lg);
+  background-color: var(--color-card-bg);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.testimonial p {
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--color-muted);
+  margin-bottom: var(--spacing-md);
+}
+
+.testimonial cite {
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+/* --- 11. Contact & Forms ----------------------------------------- */
+.contact-section {
+  padding: var(--spacing-xl) var(--spacing-lg);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.contact-section h2 {
+  font-size: 2rem;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-sm);
+  text-align: center;
+}
+
+form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  margin-top: var(--spacing-md);
+  color: var(--color-dark);
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: var(--spacing-sm);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-size: 1rem;
+  color: var(--color-dark);
+  background-color: #fff;
+  transition: border-color var(--transition);
+}
+
+form input:focus,
+form textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+form button[type="submit"],
+.submit-btn {
+  background-color: var(--color-primary);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color var(--transition);
+  margin-top: var(--spacing-md);
+}
+
+form button[type="submit"]:hover,
+.submit-btn:hover {
+  background-color: var(--color-primary-dk);
+}
+
+.field-errors {
+  display: block;
+  color: var(--color-error-tx);
+  font-size: 0.85rem;
+  margin-top: -0.25rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+/* --- 12. Drag-and-Drop Upload Area ------------------------------- */
+#drop-area {
+  border: 2px dashed var(--color-primary);
+  border-radius: var(--radius);
+  background-color: #f0f8ff;
+  padding: 2rem;
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+  transition: border-color var(--transition), background-color var(--transition);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+}
+
+#drop-area p {
+  color: var(--color-muted);
+  font-size: 1rem;
+  margin: 0;
+}
+
+#drop-area.highlight {
+  border-color: var(--color-primary-dk);
+  background-color: #e3f2fd;
+}
+
+#file-select {
+  color: var(--color-primary);
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+#file-select:hover {
+  color: var(--color-primary-dk);
+}
+
+.file-list {
+  list-style: none;
+  margin-top: var(--spacing-sm);
+  text-align: left;
+  width: 100%;
+}
+
+.file-list li {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  padding: 0.2rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* --- 13. Auth Pages (Login / Signup) ----------------------------- */
+.auth-container {
+  width: 90%;
+  max-width: 420px;
+  margin: 3rem auto;
+  background: var(--color-card-bg);
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.auth-container h1 {
+  text-align: center;
+  color: var(--color-dark);
+  margin-bottom: var(--spacing-lg);
+  font-size: 1.8rem;
+}
+
+.auth-container p {
+  text-align: center;
+  margin-top: var(--spacing-md);
+  color: var(--color-muted);
+}
+
+.auth-container a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+/* --- 14. Client Dashboard ---------------------------------------- */
+.dashboard-section {
+  padding: var(--spacing-xl) var(--spacing-lg);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.dashboard-section h1 {
+  font-size: 2rem;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-lg);
+}
+
+.dashboard-card {
+  background-color: var(--color-card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.dashboard-card h2 {
+  color: var(--color-dark);
+  margin-bottom: var(--spacing-md);
+  font-size: 1.3rem;
+}
+
+/* --- 15. About Page --------------------------------------------- */
+.about-section {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--spacing-xl) var(--spacing-lg);
+}
+
+.about-section h1 {
+  font-size: 2.5rem;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.about-section h2 {
+  font-size: 1.5rem;
+  color: var(--color-dark);
+  margin: var(--spacing-lg) 0 var(--spacing-sm);
+}
+
+.about-section p {
+  color: var(--color-muted);
+  line-height: 1.8;
+  margin-bottom: var(--spacing-sm);
+}
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+}
+
+.skill-tag {
+  background-color: var(--color-primary);
+  color: #fff;
+  padding: 0.3rem 0.85rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+/* --- 16. Footer -------------------------------------------------- */
+footer {
+  background-color: var(--color-dark);
+  color: #ffffff;
+  text-align: center;
+  padding: var(--spacing-lg);
+  margin-top: auto;
+  font-size: 0.9rem;
+}
+
+footer p {
+  margin-bottom: var(--spacing-sm);
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+footer a {
+  color: #7ab3f5;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: #ffffff;
+}
+
+/* --- 17. Intersection Observer Fade-in Animation ---------------- */
+section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- 18. Alert Utility Classes ---------------------------------- */
+.success {
+  background-color: var(--color-success-bg);
+  color: var(--color-success-tx);
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  margin-bottom: var(--spacing-md);
+}
+
+.error {
+  background-color: var(--color-error-bg);
+  color: var(--color-error-tx);
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  margin-bottom: var(--spacing-md);
+}
+
+/* --- 19. General Container Utility ------------------------------ */
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* --- 20. Responsive Media Queries (Mobile ≤ 768px) -------------- */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-sm);
+  }
+
+  .nav-auth {
+    justify-content: center;
+  }
+
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .service-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .portfolio-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .portfolio-item {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .about-section,
+  .contact-section,
+  .dashboard-section {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+}

@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Tek Consulting – Home{% endblock %}
+{% block meta_description %}Tek Consulting offers custom software, web and mobile development, and IT consulting services.{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section with typewriter span -->
+<section class="hero" id="home">
+  <h1><span id="typewriter">Empowering Businesses</span></h1>
+  <p>At Tek Consulting, we design and develop software solutions<br>tailored to drive your business forward.</p>
+  <a href="{{ url_for('views.contact') }}" class="cta-button">Get in Touch</a>
+</section>
+
+<!-- Services Preview – 3-D flip cards -->
+<section class="services" id="services-preview">
+  <h2>What We Do</h2>
+  <div class="service-cards">
+
+    <div class="service-card">
+      <div class="card-inner">
+        <div class="card-front"><h3>IT Consulting</h3></div>
+        <div class="card-back"><p>Strategic IT guidance to streamline your operations.</p></div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="card-inner">
+        <div class="card-front"><h3>Software Development</h3></div>
+        <div class="card-back"><p>End-to-end custom software built for your business.</p></div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="card-inner">
+        <div class="card-front"><h3>Web Development</h3></div>
+        <div class="card-back"><p>Responsive, secure websites that engage your audience.</p></div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="card-inner">
+        <div class="card-front"><h3>Mobile Apps</h3></div>
+        <div class="card-back"><p>iOS &amp; Android applications built to scale.</p></div>
+      </div>
+    </div>
+
+  </div>
+  <a href="{{ url_for('views.services') }}" class="button" style="margin-top: 2rem; display: inline-block;">
+    View All Services
+  </a>
+</section>
+
+<!-- Testimonials with carousel -->
+<section class="testimonials" id="testimonials">
+  <h2>What Our Clients Say</h2>
+  <div class="testimonial-carousel">
+
+    <div class="testimonial">
+      <p>"Tek Consulting delivered our inventory system on time and under budget. Exceptional work!"</p>
+      <cite>— Sarah M., Retail Operations Manager</cite>
+    </div>
+
+    <div class="testimonial">
+      <p>"Our e-commerce sales jumped 40% in six months thanks to their platform rebuild."</p>
+      <cite>— James T., CEO of ShopSmart</cite>
+    </div>
+
+    <div class="testimonial">
+      <p>"Professional, responsive, and highly skilled. I highly recommend Tek Consulting."</p>
+      <cite>— Dr. Lisa K., FinTech Startup Founder</cite>
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}
