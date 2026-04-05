@@ -1,77 +1,339 @@
 {% extends "base.html" %}
-
-{% block title %}Tek Consulting – Home{% endblock %}
-{% block meta_description %}Tek Consulting offers custom software, web and mobile development, and IT consulting services.{% endblock %}
+{% block title %}TEKK Solutions – Business Systems & Finance Consulting{% endblock %}
+{% block meta_description %}Enterprise ERP, financial automation, and systems architecture consulting.{% endblock %}
 
 {% block content %}
 
-<!-- Hero Section with typewriter span -->
-<section class="hero" id="home">
-  <h1><span id="typewriter">Empowering Businesses</span></h1>
-  <p>At Tek Consulting, we design and develop software solutions<br>tailored to drive your business forward.</p>
-  <a href="{{ url_for('views.contact') }}" class="cta-button">Get in Touch</a>
-</section>
+<!-- ============================================================
+     NAVBAR — sticky, mobile-responsive
+     ============================================================ -->
+<header class="navbar" role="banner">
+  <div class="navbar__container">
 
-<!-- Services Preview – 3-D flip cards -->
-<section class="services" id="services-preview">
-  <h2>What We Do</h2>
-  <div class="service-cards">
+    <a href="{{ url_for('views.index') }}" class="navbar__logo" aria-label="TEKK Solutions">
+      <img src="{{ url_for('static', filename='images/logo.webp') }}" alt="TEKK Solutions" width="140" height="40" />
+    </a>
 
-    <div class="service-card">
-      <div class="card-inner">
-        <div class="card-front"><h3>IT Consulting</h3></div>
-        <div class="card-back"><p>Strategic IT guidance to streamline your operations.</p></div>
-      </div>
-    </div>
+    <nav class="navbar__nav" aria-label="Primary">
+      <ul class="navbar__links" role="list">
+        <li><a href="#hero"      class="navbar__link">Home</a></li>
+        <li><a href="#services"  class="navbar__link">Services</a></li>
+        <li><a href="#portfolio" class="navbar__link">Portfolio</a></li>
+        <li><a href="{{ url_for('views.contact') }}" class="navbar__link">Contact</a></li>
+      </ul>
+    </nav>
 
-    <div class="service-card">
-      <div class="card-inner">
-        <div class="card-front"><h3>Software Development</h3></div>
-        <div class="card-back"><p>End-to-end custom software built for your business.</p></div>
-      </div>
-    </div>
-
-    <div class="service-card">
-      <div class="card-inner">
-        <div class="card-front"><h3>Web Development</h3></div>
-        <div class="card-back"><p>Responsive, secure websites that engage your audience.</p></div>
-      </div>
-    </div>
-
-    <div class="service-card">
-      <div class="card-inner">
-        <div class="card-front"><h3>Mobile Apps</h3></div>
-        <div class="card-back"><p>iOS &amp; Android applications built to scale.</p></div>
-      </div>
-    </div>
+    <button class="navbar__toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span><span></span><span></span>
+    </button>
 
   </div>
-  <a href="{{ url_for('views.services') }}" class="button" style="margin-top: 2rem; display: inline-block;">
-    View All Services
-  </a>
+
+  <nav id="mobile-nav" class="navbar__mobile" aria-label="Mobile" hidden>
+    <ul role="list">
+      <li><a href="#hero"      class="navbar__link">Home</a></li>
+      <li><a href="#services"  class="navbar__link">Services</a></li>
+      <li><a href="#portfolio" class="navbar__link">Portfolio</a></li>
+      <li><a href="{{ url_for('views.contact') }}" class="navbar__link">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+
+<!-- ============================================================
+     HERO — "The Architect" — full-height
+     ============================================================ -->
+<section id="hero" class="hero" aria-labelledby="hero-heading">
+
+  <div class="hero__bg" aria-hidden="true"></div><!-- background image via CSS var(--img-hero) -->
+  <div class="hero__overlay" aria-hidden="true"></div><!-- dark gradient overlay -->
+
+  <div class="hero__content">
+    <p class="badge-label">
+      <span aria-hidden="true">—</span>
+      Enterprise Consulting
+      <span aria-hidden="true">—</span>
+    </p>
+
+    <h1 id="hero-heading" class="hero__title text-gradient">
+      The Architect of Your<br />Business Systems
+    </h1>
+
+    <p class="hero__subtext">
+      SAGE &amp; Deloitte advisory methodology. ERP implementations,
+      financial automation, and infrastructure built for scale.
+    </p>
+
+    <div class="hero__actions">
+      <a href="#portfolio" class="btn btn--primary glow-pulse">View Our Impact</a>
+      <a href="#services"  class="btn btn--ghost">Our Services</a>
+    </div>
+  </div>
+
 </section>
 
-<!-- Testimonials with carousel -->
-<section class="testimonials" id="testimonials">
-  <h2>What Our Clients Say</h2>
-  <div class="testimonial-carousel">
+<div class="cyber-divider" aria-hidden="true"></div>
 
-    <div class="testimonial">
-      <p>"Tek Consulting delivered our inventory system on time and under budget. Exceptional work!"</p>
-      <cite>— Sarah M., Retail Operations Manager</cite>
+
+<!-- ============================================================
+     SERVICES — 3-column .glass card grid
+     ============================================================ -->
+<section id="services" class="services" aria-labelledby="services-heading">
+
+  <div class="section__header">
+    <p class="badge-label"><span aria-hidden="true">—</span> What We Do <span aria-hidden="true">—</span></p>
+    <h2 id="services-heading" class="section__title text-gradient">Services Built for Enterprise Scale</h2>
+  </div>
+
+  <ul class="services__grid" role="list">
+
+    <!-- Service 1: Sage Intacct ERP -->
+    <li class="glass service-card">
+      <div class="service-card__icon" aria-hidden="true">
+        <img src="{{ url_for('static', filename='images/icon-erp.webp') }}" alt="" width="40" height="40" />
+      </div>
+      <p class="service-card__eyebrow">ERP Strategy</p>
+      <h3 class="service-card__title">Sage Intacct Implementation</h3>
+      <p class="service-card__body">
+        We architect and deploy Sage Intacct environments that transform your financial ecosystem.
+        From chart-of-accounts restructuring and multi-entity consolidation to seamless data migration
+        from legacy platforms — every implementation is precision-engineered for zero disruption
+        and immediate operational value.
+      </p>
+      <ul class="service-card__features" role="list">
+        <li>Multi-entity &amp; multi-currency configuration</li>
+        <li>Legacy data migration &amp; validation</li>
+        <li>Custom financial reporting dashboards</li>
+        <li>Post-go-live optimisation &amp; support</li>
+      </ul>
+      <a href="{{ url_for('views.services') }}"
+         class="service-card__cta"
+         style="color: var(--accent-cyan);">
+        Explore ERP Services <span aria-hidden="true">→</span>
+      </a>
+    </li>
+
+    <!-- Service 2: PowerShell Process Automation -->
+    <li class="glass service-card">
+      <div class="service-card__icon" aria-hidden="true">
+        <img src="{{ url_for('static', filename='images/icon-automation.webp') }}" alt="" width="40" height="40" />
+      </div>
+      <p class="service-card__eyebrow">Process Automation</p>
+      <h3 class="service-card__title">Custom PowerShell Solutions</h3>
+      <p class="service-card__body">
+        Manual workflows are a liability. We design and deploy custom PowerShell automation
+        that connects your operational systems directly to your accounting infrastructure.
+        Our flagship integration bridges <strong>Veloce POS</strong> transaction data into
+        <strong>Sage Intacct</strong> — eliminating double-entry, accelerating month-end close,
+        and ensuring financial records are always audit-ready.
+      </p>
+      <ul class="service-card__features" role="list">
+        <li>Veloce POS → Sage Intacct data pipeline</li>
+        <li>Automated journal entry generation</li>
+        <li>Scheduled reconciliation &amp; exception reporting</li>
+        <li>Error handling, logging &amp; alerting</li>
+      </ul>
+      <a href="{{ url_for('views.services') }}"
+         class="service-card__cta"
+         style="color: var(--accent-cyan);">
+        Explore Automation <span aria-hidden="true">→</span>
+      </a>
+    </li>
+
+    <!-- Service 3: Custom Tech & Web Platforms -->
+    <li class="glass service-card">
+      <div class="service-card__icon" aria-hidden="true">
+        <img src="{{ url_for('static', filename='images/icon-infrastructure.webp') }}" alt="" width="40" height="40" />
+      </div>
+      <p class="service-card__eyebrow">Custom Technology</p>
+      <h3 class="service-card__title">Web Platforms &amp; Systems Architecture</h3>
+      <p class="service-card__body">
+        We build competitive, high-performance web platforms engineered for the specific demands
+        of your market. Whether it's a transactional marketplace, a client-facing portal, or
+        a back-office management system — our architecture decisions are driven by scalability,
+        security, and a measurable competitive edge.
+      </p>
+      <ul class="service-card__features" role="list">
+        <li>Full-stack web application development</li>
+        <li>API design &amp; third-party integrations</li>
+        <li>Cloud infrastructure &amp; DevOps pipelines</li>
+        <li>Performance audits &amp; technical debt remediation</li>
+      </ul>
+      <a href="{{ url_for('views.services') }}"
+         class="service-card__cta"
+         style="color: var(--accent-cyan);">
+        Explore Tech Solutions <span aria-hidden="true">→</span>
+      </a>
+    </li>
+
+  </ul>
+
+</section>
+
+<div class="cyber-divider" aria-hidden="true"></div>
+
+
+<!-- ============================================================
+     PORTFOLIO — .neon-border case study cards
+     ============================================================ -->
+<section id="portfolio" class="portfolio" aria-labelledby="portfolio-heading">
+
+  <div class="section__header">
+    <p class="badge-label"><span aria-hidden="true">—</span> Selected Work <span aria-hidden="true">—</span></p>
+    <h2 id="portfolio-heading" class="section__title text-gradient">Proven Impact, Measurable Results</h2>
+  </div>
+
+  <ul class="portfolio__grid" role="list">
+
+    <!-- Case Study 1: Veloce POS → Sage Intacct Pipeline -->
+    <li class="portfolio-card neon-border">
+      <figure class="portfolio-card__media">
+        <img
+          src="{{ url_for('static', filename='images/project1.webp') }}"
+          alt="Automated POS-to-ERP Pipeline dashboard"
+          loading="lazy"
+          width="600"
+          height="380"
+        />
+        <figcaption class="portfolio-card__label" aria-hidden="true">01</figcaption>
+      </figure>
+      <div class="portfolio-card__body">
+        <p class="portfolio-card__tag badge-label">Process Automation</p>
+        <h3 class="portfolio-card__title">Automated POS-to-ERP Pipeline</h3>
+        <p class="portfolio-card__description">
+          Retail operations teams were losing hours every week manually exporting Veloce POS
+          transaction files and re-keying data into Sage Intacct. We eliminated the gap entirely.
+          A custom PowerShell engine now runs on a scheduled cadence — pulling daily POS batch
+          summaries, normalising revenue categories, and pushing validated journal entries
+          directly into Sage Intacct. Month-end close time reduced by <strong>70%</strong>.
+          Zero manual intervention required.
+        </p>
+        <ul class="portfolio-card__meta" role="list" aria-label="Technologies used">
+          <li>PowerShell</li>
+          <li>Sage Intacct API</li>
+          <li>Veloce POS</li>
+          <li>Task Scheduler</li>
+          <li>XML / REST</li>
+        </ul>
+        <dl class="portfolio-card__stats">
+          <div>
+            <dt>Time Saved</dt>
+            <dd style="color: var(--accent-cyan);">70% faster close</dd>
+          </div>
+          <div>
+            <dt>Error Rate</dt>
+            <dd style="color: var(--accent-cyan);">0 manual entries</dd>
+          </div>
+        </dl>
+        <a href="{{ url_for('views.portfolio') }}"
+           class="portfolio-card__cta"
+           style="color: var(--accent-cyan);">
+          Read Case Study <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </li>
+
+    <!-- Case Study 2: Lease Takeover Platform -->
+    <li class="portfolio-card neon-border">
+      <figure class="portfolio-card__media">
+        <img
+          src="{{ url_for('static', filename='images/project2.webp') }}"
+          alt="High-Performance Lease Takeover Platform interface"
+          loading="lazy"
+          width="600"
+          height="380"
+        />
+        <figcaption class="portfolio-card__label" aria-hidden="true">02</figcaption>
+      </figure>
+      <div class="portfolio-card__body">
+        <p class="portfolio-card__tag badge-label">Web Platform</p>
+        <h3 class="portfolio-card__title">High-Performance Lease Takeover Platform</h3>
+        <p class="portfolio-card__description">
+          The Canadian lease takeover market lacked a modern, high-trust platform built for
+          the way buyers and sellers actually transact. We engineered a full-stack marketplace
+          purpose-built for the Canadian market — real-time lease listings, structured deal
+          flow between parties, and an admin back-office for compliance review. Built to
+          compete directly in the space dominated by LeaseBusters, with superior UX,
+          performance, and data integrity at its core.
+        </p>
+        <ul class="portfolio-card__meta" role="list" aria-label="Technologies used">
+          <li>Python / Flask</li>
+          <li>PostgreSQL</li>
+          <li>React</li>
+          <li>Stripe</li>
+          <li>AWS</li>
+        </ul>
+        <dl class="portfolio-card__stats">
+          <div>
+            <dt>Market</dt>
+            <dd style="color: var(--accent-cyan);">Canada-wide</dd>
+          </div>
+          <div>
+            <dt>Stack</dt>
+            <dd style="color: var(--accent-cyan);">Full-stack SaaS</dd>
+          </div>
+        </dl>
+        <a href="{{ url_for('views.portfolio') }}"
+           class="portfolio-card__cta"
+           style="color: var(--accent-cyan);">
+          Read Case Study <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </li>
+
+  </ul>
+
+</section>
+
+<div class="cyber-divider" aria-hidden="true"></div>
+
+
+<!-- ============================================================
+     CONTACT FOOTER — 3-column: Brand | Links | Location
+     ============================================================ -->
+<footer class="footer glass" role="contentinfo">
+  <div class="footer__grid">
+
+    <!-- Column 1: Brand -->
+    <div class="footer__brand">
+      <a href="{{ url_for('views.index') }}" aria-label="TEKK Solutions home">
+        <img src="{{ url_for('static', filename='images/logo.webp') }}" alt="TEKK Solutions" width="120" height="36" />
+      </a>
+      <p class="footer__tagline">Business Systems &amp; Finance Consulting</p>
+      <a href="mailto:hello@tekksolutions.ca" class="footer__email">hello@tekksolutions.ca</a>
     </div>
 
-    <div class="testimonial">
-      <p>"Our e-commerce sales jumped 40% in six months thanks to their platform rebuild."</p>
-      <cite>— James T., CEO of ShopSmart</cite>
-    </div>
+    <!-- Column 2: Navigation links -->
+    <nav class="footer__nav" aria-label="Footer">
+      <h3 class="footer__nav-heading">Navigation</h3>
+      <ul class="footer__links" role="list">
+        <li><a href="{{ url_for('views.index') }}"     class="footer__link">Home</a></li>
+        <li><a href="{{ url_for('views.about') }}"     class="footer__link">About</a></li>
+        <li><a href="{{ url_for('views.services') }}"  class="footer__link">Services</a></li>
+        <li><a href="{{ url_for('views.portfolio') }}" class="footer__link">Portfolio</a></li>
+        <li><a href="{{ url_for('views.contact') }}"   class="footer__link">Contact</a></li>
+        <li><a href="{{ url_for('auth.login') }}"      class="footer__link">Client Portal</a></li>
+      </ul>
+    </nav>
 
-    <div class="testimonial">
-      <p>"Professional, responsive, and highly skilled. I highly recommend Tek Consulting."</p>
-      <cite>— Dr. Lisa K., FinTech Startup Founder</cite>
-    </div>
+    <!-- Column 3: Location -->
+    <address class="footer__location">
+      <h3 class="footer__nav-heading">Location</h3>
+      <p>Montreal, QC<br />Canada</p>
+      <p><a href="tel:+15140000000" class="footer__link">+1 (514) 000-0000</a></p>
+    </address>
 
   </div>
-</section>
+
+  <div class="cyber-divider" aria-hidden="true"></div>
+
+  <div class="footer__bottom">
+    <small>&copy; 2025 TEKK Solutions Inc. All rights reserved.</small>
+    <ul class="footer__legal" role="list">
+      <li><a href="#" class="footer__link">Privacy</a></li>
+      <li><a href="#" class="footer__link">Terms</a></li>
+    </ul>
+  </div>
+</footer>
 
 {% endblock %}

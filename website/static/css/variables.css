@@ -1,0 +1,361 @@
+/* ==========================================================================
+   variables.css — TEKK Solutions Design System
+   Theme: Cyber-Architectural Dark Tech
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS Custom Properties
+   -------------------------------------------------------------------------- */
+:root {
+
+  /* -- Color Palette -------------------------------------------------------- */
+
+  /* Backgrounds */
+  --bg-primary:       #121417;           /* Deep Charcoal — page base */
+  --bg-secondary:     #0d2d2d;           /* Dark Tech Teal — panels, cards */
+  --bg-tertiary:      #0a1a1a;           /* Deeper teal — nested surfaces */
+  --bg-overlay:       rgba(13, 45, 45, 0.6); /* Semi-transparent panel fill */
+
+  /* Accents */
+  --accent-cyan:      #00f2ff;           /* Neon Cyan — primary accent */
+  --accent-glow:      rgba(0, 242, 255, 0.3); /* Cyan glow — shadows, halos */
+  --accent-glow-soft: rgba(0, 242, 255, 0.08); /* Subtle fill on hover */
+  --accent-teal:      #00b4cc;           /* Muted Teal — secondary accent */
+  --accent-purple:    #7928ca;           /* Deep Purple — tertiary accent */
+
+  /* Text */
+  --text-primary:     #e8edf2;           /* Near-white — body copy */
+  --text-secondary:   #8a9bb0;           /* Slate — labels, captions */
+  --text-muted:       #4a5a6a;           /* Dim slate — placeholders, meta */
+  --text-accent:      var(--accent-cyan);/* Cyan — links, highlights */
+
+  /* Borders */
+  --border-subtle:    rgba(255, 255, 255, 0.06);
+  --border-accent:    rgba(0, 242, 255, 0.25);
+  --border-glow:      rgba(0, 242, 255, 0.55);
+
+  /* Semantic */
+  --color-success:    #00e5a0;
+  --color-warning:    #f5a623;
+  --color-error:      #ff4d6d;
+  --color-info:       var(--accent-cyan);
+
+  /* -- Typography ----------------------------------------------------------- */
+
+  /* Font families */
+  --font-body:        'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading:     'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  --font-mono:        'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Font sizes — fluid type scale */
+  --text-xs:          0.75rem;           /* 12px */
+  --text-sm:          0.875rem;          /* 14px */
+  --text-base:        1rem;              /* 16px */
+  --text-lg:          1.125rem;          /* 18px */
+  --text-xl:          1.25rem;           /* 20px */
+  --text-2xl:         1.5rem;            /* 24px */
+  --text-3xl:         1.875rem;          /* 30px */
+  --text-4xl:         2.25rem;           /* 36px */
+  --text-5xl:         3rem;              /* 48px */
+  --text-6xl:         3.75rem;           /* 60px */
+
+  /* Font weights */
+  --weight-light:     300;
+  --weight-regular:   400;
+  --weight-medium:    500;
+  --weight-semibold:  600;
+  --weight-bold:      700;
+  --weight-black:     900;
+
+  /* Letter spacing */
+  --tracking-tight:   -0.02em;
+  --tracking-normal:  0em;
+  --tracking-wide:    0.08em;
+  --tracking-wider:   0.16em;
+  --tracking-ultra:   0.32em;
+
+  /* Line heights */
+  --leading-none:     1;
+  --leading-tight:    1.15;
+  --leading-snug:     1.375;
+  --leading-normal:   1.6;
+  --leading-relaxed:  1.75;
+
+  /* -- Spacing -------------------------------------------------------------- */
+  --space-1:   0.25rem;
+  --space-2:   0.5rem;
+  --space-3:   0.75rem;
+  --space-4:   1rem;
+  --space-5:   1.25rem;
+  --space-6:   1.5rem;
+  --space-8:   2rem;
+  --space-10:  2.5rem;
+  --space-12:  3rem;
+  --space-16:  4rem;
+  --space-20:  5rem;
+  --space-24:  6rem;
+  --space-32:  8rem;
+
+  /* -- Layout --------------------------------------------------------------- */
+  --max-width-xs:   20rem;
+  --max-width-sm:   24rem;
+  --max-width-md:   28rem;
+  --max-width-lg:   32rem;
+  --max-width-xl:   36rem;
+  --max-width-2xl:  42rem;
+  --max-width-4xl:  56rem;
+  --max-width-6xl:  72rem;
+  --max-width-7xl:  80rem;
+  --max-width-full: 100%;
+
+  /* -- Border radius -------------------------------------------------------- */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-2xl:  24px;
+  --radius-full: 9999px;
+
+  /* -- Shadows & Glow ------------------------------------------------------- */
+  --shadow-sm:    0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md:    0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-lg:    0 10px 30px rgba(0, 0, 0, 0.6);
+  --shadow-xl:    0 20px 50px rgba(0, 0, 0, 0.7);
+  --shadow-cyan:  0 0 20px var(--accent-glow),
+                  0 0 60px rgba(0, 242, 255, 0.1);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+  /* -- Transitions ---------------------------------------------------------- */
+  --ease-in:      cubic-bezier(0.4, 0, 1, 1);
+  --ease-out:     cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out:  cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring:  cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  --duration-fast:   150ms;
+  --duration-normal: 300ms;
+  --duration-slow:   500ms;
+  --duration-slower: 800ms;
+
+  --transition-base:  all var(--duration-normal) var(--ease-out);
+  --transition-fast:  all var(--duration-fast)   var(--ease-out);
+  --transition-slow:  all var(--duration-slow)   var(--ease-out);
+
+  /* -- Z-index scale -------------------------------------------------------- */
+  --z-below:    -1;
+  --z-base:      0;
+  --z-raised:   10;
+  --z-dropdown: 100;
+  --z-sticky:   200;
+  --z-overlay:  300;
+  --z-modal:    400;
+  --z-toast:    500;
+
+  /* -- Asset paths ---------------------------------------------------------- */
+  --img-root:   '/static/images/';
+  --img-logo:   url('/static/images/logo.webp');
+  --img-hero:   url('/static/images/hero-backround.webp');
+  --img-p1:     url('/static/images/project1.webp');
+  --img-p2:     url('/static/images/project2.webp');
+  --img-p3:     url('/static/images/project3.webp');
+}
+
+
+/* ==========================================================================
+   2. Utility Classes
+   ========================================================================== */
+
+/* -- Glass morphism --------------------------------------------------------- */
+.glass {
+  background:            rgba(13, 45, 45, 0.45);
+  backdrop-filter:       blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border:                1px solid var(--border-subtle);
+  box-shadow:            var(--shadow-inset), var(--shadow-lg);
+}
+
+.glass:hover {
+  background:  rgba(13, 45, 45, 0.6);
+  border-color: var(--border-accent);
+}
+
+.glass-light {
+  background:            rgba(255, 255, 255, 0.03);
+  backdrop-filter:       blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border:                1px solid var(--border-subtle);
+}
+
+/* -- Neon border ------------------------------------------------------------ */
+.neon-border {
+  border:     1px solid var(--border-accent);
+  box-shadow: 0 0 0 1px var(--accent-glow),
+              0 0 16px var(--accent-glow),
+              inset 0 0 16px rgba(0, 242, 255, 0.03);
+  transition: box-shadow var(--duration-normal) var(--ease-out),
+              border-color var(--duration-normal) var(--ease-out);
+}
+
+.neon-border:hover {
+  border-color: var(--border-glow);
+  box-shadow:   0 0 0 1px rgba(0, 242, 255, 0.5),
+                0 0 32px var(--accent-glow),
+                0 0 64px rgba(0, 242, 255, 0.1),
+                inset 0 0 24px rgba(0, 242, 255, 0.05);
+}
+
+/* -- Text gradient ---------------------------------------------------------- */
+.text-gradient {
+  background:              linear-gradient(135deg, #0d2d2d 0%, #00b4cc 40%, #00f2ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip:         text;
+}
+
+.text-gradient-bright {
+  background:              linear-gradient(135deg, #00b4cc 0%, #00f2ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip:         text;
+}
+
+/* -- Neon text glow --------------------------------------------------------- */
+.text-glow {
+  color:       var(--accent-cyan);
+  text-shadow: 0 0 10px var(--accent-glow),
+               0 0 30px rgba(0, 242, 255, 0.2);
+}
+
+/* -- Glow pulse animation --------------------------------------------------- */
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 16px var(--accent-glow), 0 0 40px rgba(0, 242, 255, 0.08);
+  }
+  50% {
+    box-shadow: 0 0 32px rgba(0, 242, 255, 0.5), 0 0 80px rgba(0, 242, 255, 0.15);
+  }
+}
+
+.glow-pulse {
+  animation: glowPulse 3s var(--ease-in-out) infinite;
+}
+
+/* -- Scanline overlay (decorative) ----------------------------------------- */
+.scanlines::after {
+  content:            '';
+  position:           absolute;
+  inset:              0;
+  background:         repeating-linear-gradient(
+                        0deg,
+                        transparent,
+                        transparent 2px,
+                        rgba(0, 242, 255, 0.015) 2px,
+                        rgba(0, 242, 255, 0.015) 4px
+                      );
+  pointer-events:     none;
+  z-index:            1;
+}
+
+/* -- Utility: section badge label ------------------------------------------ */
+.badge-label {
+  display:         inline-flex;
+  align-items:     center;
+  gap:             0.5rem;
+  font-family:     var(--font-heading);
+  font-size:       var(--text-xs);
+  font-weight:     var(--weight-semibold);
+  letter-spacing:  var(--tracking-ultra);
+  text-transform:  uppercase;
+  color:           var(--accent-cyan);
+}
+
+/* -- CTA link buttons (service cards & portfolio cards) -------------------- */
+.service-card__cta,
+.portfolio-card__cta {
+  display:         inline-flex;
+  align-items:     center;
+  gap:             0.4rem;
+  margin-top:      auto;
+  font-family:     var(--font-heading);
+  font-size:       var(--text-sm);
+  font-weight:     var(--weight-semibold);
+  letter-spacing:  var(--tracking-wider);
+  text-transform:  uppercase;
+  text-decoration: none;
+  color:           var(--accent-cyan);
+  transition:      color             var(--duration-normal) var(--ease-out),
+                   text-shadow       var(--duration-normal) var(--ease-out),
+                   gap               var(--duration-fast)   var(--ease-out);
+}
+
+.service-card__cta:hover,
+.portfolio-card__cta:hover {
+  color:       var(--accent-cyan);
+  gap:         0.75rem;
+  text-shadow: 0 0 12px var(--accent-glow),
+               0 0 28px rgba(0, 242, 255, 0.2);
+}
+
+/* -- Service card eyebrow label --------------------------------------------- */
+.service-card__eyebrow {
+  font-family:    var(--font-heading);
+  font-size:      var(--text-xs);
+  font-weight:    var(--weight-semibold);
+  letter-spacing: var(--tracking-ultra);
+  text-transform: uppercase;
+  color:          var(--accent-teal);
+  margin-bottom:  var(--space-2);
+}
+
+/* -- Portfolio card stats grid ---------------------------------------------- */
+.portfolio-card__stats {
+  display:               grid;
+  grid-template-columns: 1fr 1fr;
+  gap:                   var(--space-3);
+  margin:                var(--space-4) 0;
+  padding:               var(--space-4);
+  border-top:            1px solid var(--border-subtle);
+  border-bottom:         1px solid var(--border-subtle);
+}
+
+.portfolio-card__stats dt {
+  font-size:      var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color:          var(--text-muted);
+  margin-bottom:  var(--space-1);
+}
+
+.portfolio-card__stats dd {
+  font-family:  var(--font-heading);
+  font-size:    var(--text-sm);
+  font-weight:  var(--weight-bold);
+  margin:       0;
+}
+
+/* -- Portfolio card overlay label (large number) ---------------------------- */
+.portfolio-card__label {
+  position:    absolute;
+  top:         var(--space-4);
+  left:        var(--space-4);
+  font-family: var(--font-heading);
+  font-size:   var(--text-4xl);
+  font-weight: var(--weight-black);
+  color:       var(--accent-cyan);
+  opacity:     0.18;
+  line-height: 1;
+  user-select: none;
+}
+
+/* -- Utility: cyber divider ------------------------------------------------- */
+.cyber-divider {
+  height:     1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--accent-teal) 30%,
+    var(--accent-cyan) 50%,
+    var(--accent-teal) 70%,
+    transparent 100%
+  );
+  opacity: 0.4;
+}

@@ -132,7 +132,7 @@ main {
 
 /* --- 7. Hero Section --------------------------------------------- */
 .hero {
-  background-image: url('../images/hero-background.jpg');
+  background-image: url('../images/hero-backround.webp'); /* note: asset filename has typo (missing 'g') */
   background-size: cover;
   background-position: center;
   background-color: #0d47a1; /* fallback colour when image is missing */
