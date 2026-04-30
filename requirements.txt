@@ -1,0 +1,8 @@
+Flask
+Flask-Login
+Flask-Migrate
+Flask-SQLAlchemy
+Flask-WTF
+Flask-Limiter
+flask-talisman
+email-validator

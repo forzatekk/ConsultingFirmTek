@@ -179,7 +179,7 @@
 
     <div class="status-strip">
       <span class="blink">&#9632;</span>
-      incident logged &nbsp;·&nbsp; ref: <span id="ref-id"></span>
+      incident logged &nbsp;·&nbsp; ref: {{ ref_id }}
     </div>
 
     <div class="cyber-divider"></div>
@@ -189,12 +189,6 @@
     </nav>
 
   </article>
-
-  <script>
-    // Generate a lightweight incident reference from timestamp
-    document.getElementById('ref-id').textContent =
-      Date.now().toString(36).toUpperCase();
-  </script>
 
 </body>
 </html>
