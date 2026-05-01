@@ -30,7 +30,7 @@
 
     <div class="hero__actions">
       <a href="#portfolio" class="btn btn--primary glow-pulse">View Our Impact</a>
-      <a href="#services"  class="btn btn--ghost">Our Services</a>
+      <a href="#services"  class="btn btn--outline">Our Services</a>
     </div>
   </div>
 
@@ -54,7 +54,16 @@
     <!-- Service 1: Sage Intacct ERP -->
     <li class="glass service-card">
       <div class="service-card__icon" aria-hidden="true">
-        <img src="{{ url_for('static', filename='images/icon-erp.webp') }}" alt="" width="40" height="40" />
+        <!-- Finance / ascending bar chart with trend line -->
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2"  y="28" width="6" height="10" rx="1.5" fill="#00b4cc" opacity="0.5"/>
+          <rect x="11" y="20" width="6" height="18" rx="1.5" fill="#00b4cc" opacity="0.72"/>
+          <rect x="20" y="12" width="6" height="26" rx="1.5" fill="#00f2ff" opacity="0.85"/>
+          <rect x="29" y="5"  width="6" height="33" rx="1.5" fill="#00f2ff"/>
+          <polyline points="5,26 14,18 23,10 32,3"
+            stroke="#00f2ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/>
+          <circle cx="32" cy="3" r="2.5" fill="#00f2ff"/>
+        </svg>
       </div>
       <p class="service-card__eyebrow">ERP Strategy</p>
       <h3 class="service-card__title">Sage Intacct Implementation</h3>
@@ -80,7 +89,18 @@
     <!-- Service 2: PowerShell Process Automation -->
     <li class="glass service-card">
       <div class="service-card__icon" aria-hidden="true">
-        <img src="{{ url_for('static', filename='images/icon-automation.webp') }}" alt="" width="40" height="40" />
+        <!-- Terminal window with prompt chevron -->
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="5" width="36" height="30" rx="3" stroke="#00f2ff" stroke-width="1.5" opacity="0.8"/>
+          <circle cx="9"  cy="12" r="2" fill="#ff4d6d" opacity="0.75"/>
+          <circle cx="16" cy="12" r="2" fill="#f5a623" opacity="0.75"/>
+          <circle cx="23" cy="12" r="2" fill="#00e5a0" opacity="0.75"/>
+          <line x1="2" y1="18" x2="38" y2="18" stroke="#00f2ff" stroke-width="0.75" opacity="0.35"/>
+          <path d="M8 24 L14 28 L8 32"
+            stroke="#00f2ff" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="18" y1="28" x2="30" y2="28" stroke="#00b4cc" stroke-width="1.5" stroke-linecap="round"/>
+          <rect x="31" y="25" width="2.5" height="6" rx="0.5" fill="#00f2ff" opacity="0.7"/>
+        </svg>
       </div>
       <p class="service-card__eyebrow">Process Automation</p>
       <h3 class="service-card__title">Custom PowerShell Solutions</h3>
@@ -107,7 +127,15 @@
     <!-- Service 3: Custom Tech & Web Platforms -->
     <li class="glass service-card">
       <div class="service-card__icon" aria-hidden="true">
-        <img src="{{ url_for('static', filename='images/icon-infrastructure.webp') }}" alt="" width="40" height="40" />
+        <!-- Code tag </> -->
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 9 L4 20 L14 31"
+            stroke="#00f2ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M26 9 L36 20 L26 31"
+            stroke="#00f2ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="23" y1="7" x2="17" y2="33"
+            stroke="#00b4cc" stroke-width="1.75" stroke-linecap="round" opacity="0.9"/>
+        </svg>
       </div>
       <p class="service-card__eyebrow">Custom Technology</p>
       <h3 class="service-card__title">Web Platforms &amp; Systems Architecture</h3>
