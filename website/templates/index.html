@@ -9,7 +9,7 @@
      ============================================================ -->
 <section id="hero" class="hero" aria-labelledby="hero-heading">
 
-  <div class="hero__bg" aria-hidden="true"></div><!-- background image via CSS var(--img-hero) -->
+  <div class="hero__bg scanlines" aria-hidden="true"></div><!-- background image via CSS var(--img-hero) -->
   <div class="hero__overlay" aria-hidden="true"></div><!-- dark gradient overlay -->
 
   <div class="hero__content">
@@ -178,7 +178,7 @@
   <ul class="portfolio__grid" role="list">
 
     <!-- Case Study 1: Veloce POS → Sage Intacct Pipeline -->
-    <li class="portfolio-card neon-border">
+    <li class="portfolio-card neon-border glass">
       <figure class="portfolio-card__media">
         <img
           src="{{ url_for('static', filename='images/project1.webp') }}"
@@ -226,7 +226,7 @@
     </li>
 
     <!-- Case Study 2: Lease Takeover Platform -->
-    <li class="portfolio-card neon-border">
+    <li class="portfolio-card neon-border glass">
       <figure class="portfolio-card__media">
         <img
           src="{{ url_for('static', filename='images/project2.webp') }}"
