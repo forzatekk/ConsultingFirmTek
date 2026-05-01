@@ -5,42 +5,6 @@
 {% block content %}
 
 <!-- ============================================================
-     NAVBAR — sticky, mobile-responsive
-     ============================================================ -->
-<header class="navbar" role="banner">
-  <div class="navbar__container">
-
-    <a href="{{ url_for('views.index') }}" class="navbar__logo" aria-label="TEKK Solutions">
-      <img src="{{ url_for('static', filename='images/logo.webp') }}" alt="TEKK Solutions" width="140" height="40" />
-    </a>
-
-    <nav class="navbar__nav" aria-label="Primary">
-      <ul class="navbar__links" role="list">
-        <li><a href="#hero"      class="navbar__link">Home</a></li>
-        <li><a href="#services"  class="navbar__link">Services</a></li>
-        <li><a href="#portfolio" class="navbar__link">Portfolio</a></li>
-        <li><a href="{{ url_for('views.contact') }}" class="navbar__link">Contact</a></li>
-      </ul>
-    </nav>
-
-    <button class="navbar__toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
-      <span></span><span></span><span></span>
-    </button>
-
-  </div>
-
-  <nav id="mobile-nav" class="navbar__mobile" aria-label="Mobile" hidden>
-    <ul role="list">
-      <li><a href="#hero"      class="navbar__link">Home</a></li>
-      <li><a href="#services"  class="navbar__link">Services</a></li>
-      <li><a href="#portfolio" class="navbar__link">Portfolio</a></li>
-      <li><a href="{{ url_for('views.contact') }}" class="navbar__link">Contact</a></li>
-    </ul>
-  </nav>
-</header>
-
-
-<!-- ============================================================
      HERO — "The Architect" — full-height
      ============================================================ -->
 <section id="hero" class="hero" aria-labelledby="hero-heading">
@@ -284,56 +248,5 @@
   </ul>
 
 </section>
-
-<div class="cyber-divider" aria-hidden="true"></div>
-
-
-<!-- ============================================================
-     CONTACT FOOTER — 3-column: Brand | Links | Location
-     ============================================================ -->
-<footer class="footer glass" role="contentinfo">
-  <div class="footer__grid">
-
-    <!-- Column 1: Brand -->
-    <div class="footer__brand">
-      <a href="{{ url_for('views.index') }}" aria-label="TEKK Solutions home">
-        <img src="{{ url_for('static', filename='images/logo.webp') }}" alt="TEKK Solutions" width="120" height="36" />
-      </a>
-      <p class="footer__tagline">Business Systems &amp; Finance Consulting</p>
-      <a href="mailto:hello@tekksolutions.ca" class="footer__email">hello@tekksolutions.ca</a>
-    </div>
-
-    <!-- Column 2: Navigation links -->
-    <nav class="footer__nav" aria-label="Footer">
-      <h3 class="footer__nav-heading">Navigation</h3>
-      <ul class="footer__links" role="list">
-        <li><a href="{{ url_for('views.index') }}"     class="footer__link">Home</a></li>
-        <li><a href="{{ url_for('views.about') }}"     class="footer__link">About</a></li>
-        <li><a href="{{ url_for('views.services') }}"  class="footer__link">Services</a></li>
-        <li><a href="{{ url_for('views.portfolio') }}" class="footer__link">Portfolio</a></li>
-        <li><a href="{{ url_for('views.contact') }}"   class="footer__link">Contact</a></li>
-        <li><a href="{{ url_for('auth.login') }}"      class="footer__link">Client Portal</a></li>
-      </ul>
-    </nav>
-
-    <!-- Column 3: Location -->
-    <address class="footer__location">
-      <h3 class="footer__nav-heading">Location</h3>
-      <p>Montreal, QC<br />Canada</p>
-      <p><a href="tel:+15140000000" class="footer__link">+1 (514) 000-0000</a></p>
-    </address>
-
-  </div>
-
-  <div class="cyber-divider" aria-hidden="true"></div>
-
-  <div class="footer__bottom">
-    <small>&copy; 2025 TEKK Solutions Inc. All rights reserved.</small>
-    <ul class="footer__legal" role="list">
-      <li><a href="#" class="footer__link">Privacy</a></li>
-      <li><a href="#" class="footer__link">Terms</a></li>
-    </ul>
-  </div>
-</footer>
 
 {% endblock %}

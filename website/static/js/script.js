@@ -7,6 +7,34 @@
 document.addEventListener("DOMContentLoaded", function () {
 
   /* ------------------------------------------------------------------
+     0. Navbar — hamburger toggle
+        Toggles [hidden] on #mobile-nav and flips aria-expanded.
+        The CSS animates the three spans into an × when expanded.
+  ------------------------------------------------------------------ */
+  var navToggle = document.querySelector(".navbar__toggle");
+  var mobileNav = document.getElementById("mobile-nav");
+
+  if (navToggle && mobileNav) {
+    navToggle.addEventListener("click", function () {
+      var expanded = navToggle.getAttribute("aria-expanded") === "true";
+      navToggle.setAttribute("aria-expanded", String(!expanded));
+      if (expanded) {
+        mobileNav.setAttribute("hidden", "");
+      } else {
+        mobileNav.removeAttribute("hidden");
+      }
+    });
+
+    // Close mobile nav when a link inside it is clicked
+    mobileNav.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        navToggle.setAttribute("aria-expanded", "false");
+        mobileNav.setAttribute("hidden", "");
+      });
+    });
+  }
+
+  /* ------------------------------------------------------------------
      1. Portfolio – Load items from JSON
         portfolio.html sets window.PORTFOLIO_JSON_URL via a <script>
         block so url_for() generates the correct static file path.
