@@ -4,11 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- =====================================================================
-       PRIMARY SEO
-       Child templates override {% block title %} and {% block meta_description %}
-       and all OG / Twitter tags automatically inherit those values via self.*().
-       ===================================================================== -->
+  {#
+     PRIMARY SEO
+     Child templates override the `title` and `meta_description` blocks;
+     og:title, og:description, twitter:title, twitter:description all
+     inherit those values automatically via self.blockname().
+  #}
   <title>{% block title %}TEKK Solutions — Business Systems Analysis & ERP Automation, Montreal{% endblock %}</title>
 
   <meta name="description"
