@@ -3,10 +3,87 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="{% block meta_description %}Tek Consulting – Custom software solutions for growing businesses.{% endblock %}" />
-  <title>{% block title %}Tek Consulting{% endblock %}</title>
 
-  <!-- Main stylesheet via Flask url_for -->
+  <!-- =====================================================================
+       PRIMARY SEO
+       Child templates override {% block title %} and {% block meta_description %}
+       and all OG / Twitter tags automatically inherit those values via self.*().
+       ===================================================================== -->
+  <title>{% block title %}TEKK Solutions — Business Systems Analysis & ERP Automation, Montreal{% endblock %}</title>
+
+  <meta name="description"
+        content="{% block meta_description %}TEKK Solutions delivers Sage Intacct ERP implementation, PowerShell–Veloce POS automation pipelines, and high-performance web platforms for growing businesses. Based in Montreal, QC.{% endblock %}" />
+
+  <meta name="keywords"
+        content="{% block meta_keywords %}Business Systems Analysis, ERP Automation, Sage Intacct Implementation, PowerShell Automation, Veloce POS Integration, Finance Automation, Web Platforms, Montreal Consulting, ERP Consulting Canada{% endblock %}" />
+
+  <meta name="author"  content="TEKK Solutions" />
+  <meta name="robots"  content="{% block meta_robots %}index, follow{% endblock %}" />
+
+  <!-- Canonical: strips query-string parameters to avoid duplicate indexing -->
+  <link rel="canonical" href="{{ request.scheme }}://{{ request.host }}{{ request.path }}" />
+
+  <!-- =====================================================================
+       OPEN GRAPH  (LinkedIn, Facebook, Slack unfurls)
+       og:title and og:description mirror the <title> and meta description
+       blocks above — override once, both update.
+       ===================================================================== -->
+  <meta property="og:type"        content="{% block og_type %}website{% endblock %}" />
+  <meta property="og:site_name"   content="TEKK Solutions" />
+  <meta property="og:locale"      content="en_CA" />
+  <meta property="og:url"         content="{{ request.scheme }}://{{ request.host }}{{ request.path }}" />
+  <meta property="og:title"       content="{{ self.title() }}" />
+  <meta property="og:description" content="{{ self.meta_description() }}" />
+
+  {# og:image — override per page for article/portfolio entries #}
+  <meta property="og:image"
+        content="{% block og_image %}{{ url_for('static', filename='images/hero-backround.webp', _external=True) }}{% endblock %}" />
+  <meta property="og:image:width"  content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt"    content="{{ self.title() }}" />
+
+  <!-- =====================================================================
+       TWITTER / X CARD  (summary_large_image renders the full hero banner)
+       ===================================================================== -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="{{ self.title() }}" />
+  <meta name="twitter:description" content="{{ self.meta_description() }}" />
+  <meta name="twitter:image"       content="{{ self.og_image() }}" />
+  <meta name="twitter:image:alt"   content="{{ self.title() }}" />
+
+  <!-- =====================================================================
+       PWA / FAVICON
+       logo.webp works as a favicon in Chrome, Firefox, and Edge.
+       For maximum compatibility generate a 32×32 favicon.ico and add:
+         <link rel="icon" sizes="32x32" href="/static/images/favicon.ico" />
+       Apple Touch Icon requires a PNG — generate a 180×180 variant when
+       the icon assets are exported from the design system.
+       ===================================================================== -->
+  <link rel="icon"
+        type="image/webp"
+        href="{{ url_for('static', filename='images/logo.webp') }}" />
+  <link rel="apple-touch-icon"
+        href="{{ url_for('static', filename='images/logo.webp') }}" />
+  <link rel="manifest"
+        href="{{ url_for('static', filename='manifest.json') }}" />
+  <meta name="theme-color"            content="#00f2ff" />
+  <meta name="msapplication-TileColor" content="#121417" />
+
+  <!-- =====================================================================
+       PERFORMANCE — font preconnect before any render-blocking resource
+       ===================================================================== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+
+  <!-- Display=swap prevents invisible text during font load (FOIT) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600;700;800&display=swap"
+        rel="stylesheet" />
+
+  <!-- =====================================================================
+       STYLES  — variables first so all custom properties are defined
+       ===================================================================== -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}" />
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
 
   {% block extra_css %}{% endblock %}
@@ -17,7 +94,10 @@
   <header class="navbar">
     <div class="logo">
       <a href="{{ url_for('views.index') }}">
-        <img src="{{ url_for('static', filename='images/logo.webp') }}" alt="Tek Consulting Logo" />
+        <img src="{{ url_for('static', filename='images/logo.webp') }}"
+             alt="TEKK Solutions"
+             width="140" height="40"
+             loading="eager" />
       </a>
     </div>
 
@@ -48,7 +128,7 @@
   <!-- ===== FLASH MESSAGES ===== -->
   {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
-      <div class="flash-messages" role="alert">
+      <div class="flash-messages" role="alert" aria-live="polite">
         {% for category, message in messages %}
           <div class="flash {{ category }}">{{ message }}</div>
         {% endfor %}
@@ -63,7 +143,7 @@
 
   <!-- ===== FOOTER ===== -->
   <footer>
-    <p>&copy; 2024 Tek Consulting. All rights reserved.</p>
+    <p>&copy; {{ now.year if now else 2025 }} TEKK Solutions. All rights reserved.</p>
     <div class="footer-links">
       <a href="{{ url_for('views.about') }}">About</a>
       <a href="{{ url_for('views.services') }}">Services</a>
@@ -72,7 +152,7 @@
     </div>
   </footer>
 
-  <!-- Main script via Flask url_for -->
+  <!-- defer keeps script off the critical render path -->
   <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
   {% block extra_js %}{% endblock %}
 

@@ -3,6 +3,7 @@
 import logging
 import os
 import time
+from datetime import datetime
 from logging.handlers import RotatingFileHandler
 
 from flask import Flask, render_template, request
@@ -12,6 +13,7 @@ from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 
 # ---------------------------------------------------------------------------
@@ -100,7 +102,8 @@ def _configure_security(app: Flask) -> None:
         "style-src":   ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
         "font-src":    ["'self'", "https://fonts.gstatic.com", "data:"],
         "img-src":     ["'self'", "data:", "blob:"],
-        "connect-src": "'self'",
+        "connect-src":  "'self'",
+        "manifest-src": "'self'",
         "frame-ancestors": "'none'",
         "form-action": "'self'",
         "base-uri":    "'self'",
@@ -169,11 +172,18 @@ def create_app() -> Flask:
     app.config["WTF_CSRF_TIME_LIMIT"] = 3600
     app.config["WTF_CSRF_HEADERS"] = ["X-CSRFToken"]
 
+    # Trust X-Forwarded-Proto / X-Forwarded-Host from a single upstream proxy
+    # so that url_for(_external=True) and request.url produce https:// in prod.
+    app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
+
     db.init_app(app)
     csrf.init_app(app)
     login_manager.init_app(app)
     migrate.init_app(app, db)
     limiter.init_app(app)
+
+    # Inject `now` into every template so the footer year is always current.
+    app.jinja_env.globals["now"] = datetime.utcnow()
 
     from .views import views as views_blueprint
     from .auth import auth as auth_blueprint

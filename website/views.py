@@ -1,8 +1,12 @@
 """Public-facing page routes (views blueprint)."""
 
 import os
+from datetime import date
 
-from flask import Blueprint, flash, jsonify, redirect, render_template, send_from_directory, url_for
+from flask import (
+    Blueprint, flash, jsonify, make_response, redirect,
+    render_template, send_from_directory, url_for,
+)
 from flask_wtf.csrf import generate_csrf
 
 from . import limiter
@@ -10,6 +14,10 @@ from .forms import ContactForm
 
 views = Blueprint("views", __name__)
 
+
+# ---------------------------------------------------------------------------
+# Public pages
+# ---------------------------------------------------------------------------
 
 @views.route("/")
 def index():
@@ -42,6 +50,22 @@ def contact():
     return render_template("contact.html", form=form)
 
 
+# ---------------------------------------------------------------------------
+# React SPA
+# ---------------------------------------------------------------------------
+
+@views.route("/landing")
+@views.route("/landing/<path:filename>")
+def landing(filename="index.html"):
+    """Serve the built TEKK Solutions React SPA from static/portfolio/."""
+    portfolio_dir = os.path.join(views.root_path, "static", "portfolio")
+    return send_from_directory(portfolio_dir, filename)
+
+
+# ---------------------------------------------------------------------------
+# CSRF token endpoint for React SPA
+# ---------------------------------------------------------------------------
+
 @views.route("/api/csrf-token", methods=["GET"])
 def csrf_token():
     """Return a fresh CSRF token for React SPA API calls.
@@ -50,15 +74,70 @@ def csrf_token():
       1. GET /api/csrf-token on mount (or before any mutating request).
       2. Store the returned csrfToken.
       3. Include the header  X-CSRFToken: <token>  on every POST/PUT/DELETE.
-
-    Flask-WTF will validate it via app.config["WTF_CSRF_HEADERS"].
     """
     return jsonify({"csrfToken": generate_csrf()})
 
 
-@views.route("/landing")
-@views.route("/landing/<path:filename>")
-def landing(filename="index.html"):
-    """Serve the built TEKK Solutions React SPA from static/portfolio/."""
-    portfolio_dir = os.path.join(views.root_path, "static", "portfolio")
-    return send_from_directory(portfolio_dir, filename)
+# ---------------------------------------------------------------------------
+# SEO infrastructure
+# ---------------------------------------------------------------------------
+
+@views.route("/sitemap.xml")
+def sitemap():
+    """Dynamically generate sitemap.xml for all public routes."""
+    pages = [
+        {
+            "loc":        url_for("views.index",     _external=True),
+            "changefreq": "weekly",
+            "priority":   "1.0",
+        },
+        {
+            "loc":        url_for("views.about",     _external=True),
+            "changefreq": "monthly",
+            "priority":   "0.8",
+        },
+        {
+            "loc":        url_for("views.services",  _external=True),
+            "changefreq": "monthly",
+            "priority":   "0.9",
+        },
+        {
+            "loc":        url_for("views.portfolio", _external=True),
+            "changefreq": "weekly",
+            "priority":   "0.9",
+        },
+        {
+            "loc":        url_for("views.contact",   _external=True),
+            "changefreq": "monthly",
+            "priority":   "0.7",
+        },
+        {
+            "loc":        url_for("views.landing",   _external=True),
+            "changefreq": "weekly",
+            "priority":   "0.8",
+        },
+    ]
+
+    xml = render_template("sitemap.xml", pages=pages, lastmod=date.today().isoformat())
+    response = make_response(xml)
+    response.headers["Content-Type"] = "application/xml; charset=utf-8"
+    # Cache the sitemap for 24 hours at the CDN/proxy layer
+    response.headers["Cache-Control"] = "public, max-age=86400"
+    return response
+
+
+@views.route("/robots.txt")
+def robots():
+    """Serve robots.txt pointing crawlers at the sitemap."""
+    body = (
+        "User-agent: *\n"
+        "Allow: /\n"
+        "Disallow: /client_dashboard\n"
+        "Disallow: /login\n"
+        "Disallow: /signup\n"
+        f"Sitemap: {url_for('views.sitemap', _external=True)}\n"
+    )
+    return body, 200, {
+        "Content-Type": "text/plain; charset=utf-8",
+        "Cache-Control": "public, max-age=86400",
+    }
