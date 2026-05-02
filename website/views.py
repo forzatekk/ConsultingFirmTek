@@ -3,14 +3,17 @@
 import os
 from datetime import date
 
+from urllib.parse import urlparse
+
 from flask import (
     Blueprint, flash, jsonify, make_response, redirect,
-    render_template, send_from_directory, url_for,
+    render_template, request, send_from_directory, session, url_for,
 )
 from flask_wtf.csrf import generate_csrf
 
 from . import limiter
 from .forms import ContactForm
+from .i18n import get_t
 
 views = Blueprint("views", __name__)
 
@@ -45,9 +48,31 @@ def contact():
     form = ContactForm()
     if form.validate_on_submit():
         # TODO: send email or persist message
-        flash("Message sent! We'll get back to you within 24 hours.", "success")
+        flash(get_t(session.get("lang", "en"))["contact"]["flash_success"], "success")
         return redirect(url_for("views.contact"))
     return render_template("contact.html", form=form)
+
+
+# ---------------------------------------------------------------------------
+# Language switcher
+# ---------------------------------------------------------------------------
+
+@views.route("/set-lang/<lang>")
+def set_lang(lang):
+    """Persist the chosen language in the session and return to the same page.
+
+    The navbar passes the current path as ?next= so the redirect is exact.
+    Only relative paths are accepted to prevent open-redirect attacks.
+    """
+    if lang not in ("en", "fr"):
+        lang = "en"
+    session.permanent = True
+    session["lang"] = lang
+    next_url = request.args.get("next", "")
+    # Accept only relative paths (no scheme/netloc) to block open redirects.
+    if next_url and not urlparse(next_url).netloc:
+        return redirect(next_url)
+    return redirect(url_for("views.index"))
 
 
 # ---------------------------------------------------------------------------

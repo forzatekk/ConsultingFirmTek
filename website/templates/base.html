@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ lang }}">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -21,6 +21,9 @@
   <meta name="author"  content="TEKK Solutions" />
   <meta name="robots"  content="{% block meta_robots %}index, follow{% endblock %}" />
   <link rel="canonical" href="{{ request.scheme }}://{{ request.host }}{{ request.path }}" />
+  <link rel="alternate" hreflang="en" href="{{ request.scheme }}://{{ request.host }}{{ request.path }}?lang=en" />
+  <link rel="alternate" hreflang="fr" href="{{ request.scheme }}://{{ request.host }}{{ request.path }}?lang=fr" />
+  <link rel="alternate" hreflang="x-default" href="{{ request.scheme }}://{{ request.host }}{{ request.path }}" />
 
   <meta property="og:type"        content="{% block og_type %}website{% endblock %}" />
   <meta property="og:site_name"   content="TEKK Solutions" />
@@ -73,31 +76,44 @@
         <ul class="navbar__links" role="list">
           <li>
             <a href="{{ url_for('views.index') }}"
-               class="navbar__link{% if request.endpoint == 'views.index' %} navbar__link--active{% endif %}">Home</a>
+               class="navbar__link{% if request.endpoint == 'views.index' %} navbar__link--active{% endif %}">{{ t.nav.home }}</a>
           </li>
           <li>
             <a href="{{ url_for('views.services') }}"
-               class="navbar__link{% if request.endpoint == 'views.services' %} navbar__link--active{% endif %}">Services</a>
+               class="navbar__link{% if request.endpoint == 'views.services' %} navbar__link--active{% endif %}">{{ t.nav.services }}</a>
           </li>
           <li>
             <a href="{{ url_for('views.portfolio') }}"
-               class="navbar__link{% if request.endpoint == 'views.portfolio' %} navbar__link--active{% endif %}">Portfolio</a>
+               class="navbar__link{% if request.endpoint == 'views.portfolio' %} navbar__link--active{% endif %}">{{ t.nav.portfolio }}</a>
           </li>
           <li>
             <a href="{{ url_for('views.contact') }}"
-               class="navbar__link{% if request.endpoint == 'views.contact' %} navbar__link--active{% endif %}">Contact</a>
+               class="navbar__link{% if request.endpoint == 'views.contact' %} navbar__link--active{% endif %}">{{ t.nav.contact }}</a>
           </li>
         </ul>
       </nav>
 
       <div class="navbar__auth">
         {% if current_user.is_authenticated %}
-          <a href="{{ url_for('client.dashboard') }}" class="btn btn--ghost btn--sm">Dashboard</a>
-          <a href="{{ url_for('auth.logout') }}"      class="btn btn--outline btn--sm">Logout</a>
+          <a href="{{ url_for('client.dashboard') }}" class="btn btn--ghost btn--sm">{{ t.nav.dashboard }}</a>
+          <a href="{{ url_for('auth.logout') }}"      class="btn btn--outline btn--sm">{{ t.nav.logout }}</a>
         {% else %}
-          <a href="{{ url_for('auth.login') }}"  class="btn btn--ghost btn--sm">Login</a>
-          <a href="{{ url_for('auth.signup') }}" class="btn btn--primary btn--sm">Sign Up</a>
+          <a href="{{ url_for('auth.login') }}"  class="btn btn--ghost btn--sm">{{ t.nav.login }}</a>
+          <a href="{{ url_for('auth.signup') }}" class="btn btn--primary btn--sm">{{ t.nav.signup }}</a>
         {% endif %}
+      </div>
+
+      {# Language switcher — EN | FR #}
+      <div class="navbar__lang" role="navigation" aria-label="Language selection">
+        <a href="{{ url_for('views.set_lang', lang='en', next=request.path) }}"
+           class="navbar__link{% if lang == 'en' %} navbar__link--active{% endif %}"
+           aria-label="Switch to English"
+           hreflang="en">EN</a>
+        <span class="navbar__lang-sep" aria-hidden="true">|</span>
+        <a href="{{ url_for('views.set_lang', lang='fr', next=request.path) }}"
+           class="navbar__link{% if lang == 'fr' %} navbar__link--active{% endif %}"
+           aria-label="Passer en français"
+           hreflang="fr">FR</a>
       </div>
 
       <button class="navbar__toggle"
@@ -111,19 +127,28 @@
 
     <nav id="mobile-nav" class="navbar__mobile" aria-label="Mobile navigation" hidden>
       <ul role="list">
-        <li><a href="{{ url_for('views.index') }}"     class="navbar__link">Home</a></li>
-        <li><a href="{{ url_for('views.services') }}"  class="navbar__link">Services</a></li>
-        <li><a href="{{ url_for('views.portfolio') }}" class="navbar__link">Portfolio</a></li>
-        <li><a href="{{ url_for('views.contact') }}"   class="navbar__link">Contact</a></li>
+        <li><a href="{{ url_for('views.index') }}"     class="navbar__link">{{ t.nav.home }}</a></li>
+        <li><a href="{{ url_for('views.services') }}"  class="navbar__link">{{ t.nav.services }}</a></li>
+        <li><a href="{{ url_for('views.portfolio') }}" class="navbar__link">{{ t.nav.portfolio }}</a></li>
+        <li><a href="{{ url_for('views.contact') }}"   class="navbar__link">{{ t.nav.contact }}</a></li>
       </ul>
       <div class="navbar__mobile-auth">
         {% if current_user.is_authenticated %}
-          <a href="{{ url_for('client.dashboard') }}" class="btn btn--ghost">Dashboard</a>
-          <a href="{{ url_for('auth.logout') }}"      class="btn btn--outline">Logout</a>
+          <a href="{{ url_for('client.dashboard') }}" class="btn btn--ghost">{{ t.nav.dashboard }}</a>
+          <a href="{{ url_for('auth.logout') }}"      class="btn btn--outline">{{ t.nav.logout }}</a>
         {% else %}
-          <a href="{{ url_for('auth.login') }}"  class="btn btn--ghost">Login</a>
-          <a href="{{ url_for('auth.signup') }}" class="btn btn--primary">Sign Up</a>
+          <a href="{{ url_for('auth.login') }}"  class="btn btn--ghost">{{ t.nav.login }}</a>
+          <a href="{{ url_for('auth.signup') }}" class="btn btn--primary">{{ t.nav.signup }}</a>
         {% endif %}
+      </div>
+      <div class="navbar__mobile-lang" role="navigation" aria-label="Language selection">
+        <a href="{{ url_for('views.set_lang', lang='en', next=request.path) }}"
+           class="navbar__link{% if lang == 'en' %} navbar__link--active{% endif %}"
+           hreflang="en">EN</a>
+        <span class="navbar__lang-sep" aria-hidden="true">|</span>
+        <a href="{{ url_for('views.set_lang', lang='fr', next=request.path) }}"
+           class="navbar__link{% if lang == 'fr' %} navbar__link--active{% endif %}"
+           hreflang="fr">FR</a>
       </div>
     </nav>
   </header><!-- /.navbar -->
@@ -155,24 +180,24 @@
                width="120" height="36"
                loading="lazy" />
         </a>
-        <p class="footer__tagline">Business Systems &amp; Finance Consulting</p>
+        <p class="footer__tagline">{{ t.footer.tagline | safe }}</p>
         <a href="mailto:hello@tekksolutions.ca" class="footer__email">hello@tekksolutions.ca</a>
       </div>
 
       <nav class="footer__nav" aria-label="Footer navigation">
-        <h3 class="footer__nav-heading">Navigation</h3>
+        <h3 class="footer__nav-heading">{{ t.footer.nav_heading }}</h3>
         <ul class="footer__links" role="list">
-          <li><a href="{{ url_for('views.index') }}"     class="footer__link">Home</a></li>
-          <li><a href="{{ url_for('views.about') }}"     class="footer__link">About</a></li>
-          <li><a href="{{ url_for('views.services') }}"  class="footer__link">Services</a></li>
-          <li><a href="{{ url_for('views.portfolio') }}" class="footer__link">Portfolio</a></li>
-          <li><a href="{{ url_for('views.contact') }}"   class="footer__link">Contact</a></li>
-          <li><a href="{{ url_for('auth.login') }}"      class="footer__link">Client Portal</a></li>
+          <li><a href="{{ url_for('views.index') }}"     class="footer__link">{{ t.nav.home }}</a></li>
+          <li><a href="{{ url_for('views.about') }}"     class="footer__link">{{ t.nav.about }}</a></li>
+          <li><a href="{{ url_for('views.services') }}"  class="footer__link">{{ t.nav.services }}</a></li>
+          <li><a href="{{ url_for('views.portfolio') }}" class="footer__link">{{ t.nav.portfolio }}</a></li>
+          <li><a href="{{ url_for('views.contact') }}"   class="footer__link">{{ t.nav.contact }}</a></li>
+          <li><a href="{{ url_for('auth.login') }}"      class="footer__link">{{ t.nav.login }}</a></li>
         </ul>
       </nav>
 
       <address class="footer__location">
-        <h3 class="footer__nav-heading">Location</h3>
+        <h3 class="footer__nav-heading">{{ t.footer.location_heading }}</h3>
         <p>Montreal, QC<br />Canada</p>
         <p><a href="tel:+15140000000" class="footer__link">+1 (514) 000-0000</a></p>
       </address>
@@ -184,8 +209,8 @@
     <div class="footer__bottom">
       <small>&copy; {{ now.year if now else 2025 }} TEKK Solutions Inc. All rights reserved.</small>
       <ul class="footer__legal" role="list">
-        <li><a href="#" class="footer__link">Privacy</a></li>
-        <li><a href="#" class="footer__link">Terms</a></li>
+        <li><a href="#" class="footer__link">{{ t.footer.privacy }}</a></li>
+        <li><a href="#" class="footer__link">{{ t.footer.terms }}</a></li>
       </ul>
     </div>
   </footer><!-- /.footer -->

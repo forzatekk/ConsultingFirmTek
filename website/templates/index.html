@@ -1,36 +1,33 @@
 {% extends "base.html" %}
 {% block title %}TEKK Solutions – Business Systems & Finance Consulting{% endblock %}
-{% block meta_description %}Enterprise ERP, financial automation, and systems architecture consulting.{% endblock %}
+{% block meta_description %}{{ t.index.meta_description }}{% endblock %}
 
 {% block content %}
 
 <!-- ============================================================
-     HERO — "The Architect" — full-height
+     HERO
      ============================================================ -->
 <section id="hero" class="hero" aria-labelledby="hero-heading">
 
-  <div class="hero__bg scanlines" aria-hidden="true"></div><!-- background image via CSS var(--img-hero) -->
-  <div class="hero__overlay" aria-hidden="true"></div><!-- dark gradient overlay -->
+  <div class="hero__bg scanlines" aria-hidden="true"></div>
+  <div class="hero__overlay" aria-hidden="true"></div>
 
   <div class="hero__content">
     <p class="badge-label">
       <span aria-hidden="true">—</span>
-      Enterprise Consulting
+      {{ t.index.hero.badge }}
       <span aria-hidden="true">—</span>
     </p>
 
     <h1 id="hero-heading" class="hero__title text-gradient">
-      The Architect of Your<br />Business Systems
+      {{ t.index.hero.title | safe }}
     </h1>
 
-    <p class="hero__subtext">
-      Enterprise Advisory Standards methodology. ERP implementations,
-      financial automation, and infrastructure built for scale.
-    </p>
+    <p class="hero__subtext">{{ t.index.hero.subtext }}</p>
 
     <div class="hero__actions">
-      <a href="#portfolio" class="btn btn--primary glow-pulse">View Our Impact</a>
-      <a href="#services"  class="btn btn--outline">Our Services</a>
+      <a href="#portfolio" class="btn btn--primary glow-pulse">{{ t.index.hero.cta_primary }}</a>
+      <a href="#services"  class="btn btn--outline">{{ t.index.hero.cta_secondary }}</a>
     </div>
   </div>
 
@@ -45,8 +42,8 @@
 <section id="services" class="services" aria-labelledby="services-heading">
 
   <div class="section__header">
-    <p class="badge-label"><span aria-hidden="true">—</span> What We Do <span aria-hidden="true">—</span></p>
-    <h2 id="services-heading" class="section__title text-gradient">Services Built for Enterprise Scale</h2>
+    <p class="badge-label"><span aria-hidden="true">—</span> {{ t.index.services.badge }} <span aria-hidden="true">—</span></p>
+    <h2 id="services-heading" class="section__title text-gradient">{{ t.index.services.title | safe }}</h2>
   </div>
 
   <ul class="services__grid" role="list">
@@ -54,7 +51,6 @@
     <!-- Service 1: Cloud ERP Implementation -->
     <li class="glass service-card">
       <div class="service-card__icon" aria-hidden="true">
-        <!-- Finance / ascending bar chart with trend line -->
         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="2"  y="28" width="6" height="10" rx="1.5" fill="#00b4cc" opacity="0.5"/>
           <rect x="11" y="20" width="6" height="18" rx="1.5" fill="#00b4cc" opacity="0.72"/>
@@ -65,31 +61,23 @@
           <circle cx="32" cy="3" r="2.5" fill="#00f2ff"/>
         </svg>
       </div>
-      <p class="service-card__eyebrow">ERP Strategy</p>
-      <h3 class="service-card__title">Enterprise Financial System Implementation</h3>
-      <p class="service-card__body">
-        We architect and deploy Cloud ERP environments that transform your financial ecosystem.
-        From chart-of-accounts restructuring and multi-entity consolidation to seamless data migration
-        from legacy platforms — every implementation is precision-engineered for zero disruption
-        and immediate operational value.
-      </p>
+      <p class="service-card__eyebrow">{{ t.index.services.p1_eyebrow }}</p>
+      <h3 class="service-card__title">{{ t.index.services.p1_title | safe }}</h3>
+      <p class="service-card__body">{{ t.index.services.p1_body }}</p>
       <ul class="service-card__features" role="list">
-        <li>Multi-entity &amp; multi-currency configuration</li>
-        <li>Legacy data migration &amp; validation</li>
-        <li>Custom financial reporting dashboards</li>
-        <li>Post-go-live optimisation &amp; support</li>
+        <li>{{ t.index.services.p1_f1 | safe }}</li>
+        <li>{{ t.index.services.p1_f2 | safe }}</li>
+        <li>{{ t.index.services.p1_f3 | safe }}</li>
+        <li>{{ t.index.services.p1_f4 | safe }}</li>
       </ul>
-      <a href="{{ url_for('views.services') }}"
-         class="service-card__cta"
-         style="color: var(--accent-cyan);">
-        Explore ERP Services <span aria-hidden="true">→</span>
+      <a href="{{ url_for('views.services') }}" class="service-card__cta">
+        {{ t.index.services.p1_cta }} <span aria-hidden="true">→</span>
       </a>
     </li>
 
-    <!-- Service 2: PowerShell Process Automation -->
+    <!-- Service 2: Process Automation -->
     <li class="glass service-card">
       <div class="service-card__icon" aria-hidden="true">
-        <!-- Terminal window with prompt chevron -->
         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="2" y="5" width="36" height="30" rx="3" stroke="#00f2ff" stroke-width="1.5" opacity="0.8"/>
           <circle cx="9"  cy="12" r="2" fill="#ff4d6d" opacity="0.75"/>
@@ -102,32 +90,23 @@
           <rect x="31" y="25" width="2.5" height="6" rx="0.5" fill="#00f2ff" opacity="0.7"/>
         </svg>
       </div>
-      <p class="service-card__eyebrow">Process Automation</p>
-      <h3 class="service-card__title">Custom PowerShell Solutions</h3>
-      <p class="service-card__body">
-        Manual workflows are a liability. We design and deploy custom PowerShell automation
-        that connects your operational systems directly to your accounting infrastructure.
-        Our flagship integration bridges <strong>Point-of-Sale</strong> transaction data into
-        <strong>Cloud ERP Frameworks</strong> — eliminating double-entry, accelerating month-end close,
-        and ensuring financial records are always audit-ready.
-      </p>
+      <p class="service-card__eyebrow">{{ t.index.services.p2_eyebrow }}</p>
+      <h3 class="service-card__title">{{ t.index.services.p2_title | safe }}</h3>
+      <p class="service-card__body">{{ t.index.services.p2_body | safe }}</p>
       <ul class="service-card__features" role="list">
-        <li>POS → Financial System data pipeline</li>
-        <li>Automated journal entry generation</li>
-        <li>Scheduled reconciliation &amp; exception reporting</li>
-        <li>Error handling, logging &amp; alerting</li>
+        <li>{{ t.index.services.p2_f1 | safe }}</li>
+        <li>{{ t.index.services.p2_f2 | safe }}</li>
+        <li>{{ t.index.services.p2_f3 | safe }}</li>
+        <li>{{ t.index.services.p2_f4 | safe }}</li>
       </ul>
-      <a href="{{ url_for('views.services') }}"
-         class="service-card__cta"
-         style="color: var(--accent-cyan);">
-        Explore Automation <span aria-hidden="true">→</span>
+      <a href="{{ url_for('views.services') }}" class="service-card__cta">
+        {{ t.index.services.p2_cta }} <span aria-hidden="true">→</span>
       </a>
     </li>
 
-    <!-- Service 3: Custom Tech & Web Platforms -->
+    <!-- Service 3: Custom Technology -->
     <li class="glass service-card">
       <div class="service-card__icon" aria-hidden="true">
-        <!-- Code tag </> -->
         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M14 9 L4 20 L14 31"
             stroke="#00f2ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -137,24 +116,17 @@
             stroke="#00b4cc" stroke-width="1.75" stroke-linecap="round" opacity="0.9"/>
         </svg>
       </div>
-      <p class="service-card__eyebrow">Custom Technology</p>
-      <h3 class="service-card__title">Web Platforms &amp; Systems Architecture</h3>
-      <p class="service-card__body">
-        We build competitive, high-performance web platforms engineered for the specific demands
-        of your market. Whether it's a transactional marketplace, a client-facing portal, or
-        a back-office management system — our architecture decisions are driven by scalability,
-        security, and a measurable competitive edge.
-      </p>
+      <p class="service-card__eyebrow">{{ t.index.services.p3_eyebrow }}</p>
+      <h3 class="service-card__title">{{ t.index.services.p3_title | safe }}</h3>
+      <p class="service-card__body">{{ t.index.services.p3_body }}</p>
       <ul class="service-card__features" role="list">
-        <li>Full-stack web application development</li>
-        <li>API design &amp; third-party integrations</li>
-        <li>Cloud infrastructure &amp; DevOps pipelines</li>
-        <li>Performance audits &amp; technical debt remediation</li>
+        <li>{{ t.index.services.p3_f1 | safe }}</li>
+        <li>{{ t.index.services.p3_f2 | safe }}</li>
+        <li>{{ t.index.services.p3_f3 | safe }}</li>
+        <li>{{ t.index.services.p3_f4 | safe }}</li>
       </ul>
-      <a href="{{ url_for('views.services') }}"
-         class="service-card__cta"
-         style="color: var(--accent-cyan);">
-        Explore Tech Solutions <span aria-hidden="true">→</span>
+      <a href="{{ url_for('views.services') }}" class="service-card__cta">
+        {{ t.index.services.p3_cta }} <span aria-hidden="true">→</span>
       </a>
     </li>
 
@@ -171,18 +143,18 @@
 <section id="portfolio" class="portfolio" aria-labelledby="portfolio-heading">
 
   <div class="section__header">
-    <p class="badge-label"><span aria-hidden="true">—</span> Selected Work <span aria-hidden="true">—</span></p>
-    <h2 id="portfolio-heading" class="section__title text-gradient">Proven Impact, Measurable Results</h2>
+    <p class="badge-label"><span aria-hidden="true">—</span> {{ t.index.portfolio.badge }} <span aria-hidden="true">—</span></p>
+    <h2 id="portfolio-heading" class="section__title text-gradient">{{ t.index.portfolio.title | safe }}</h2>
   </div>
 
   <ul class="portfolio__grid" role="list">
 
-    <!-- Case Study 1: Automated POS-to-Financial Pipeline -->
+    <!-- Case Study 1 -->
     <li class="portfolio-card neon-border glass">
       <figure class="portfolio-card__media">
         <img
           src="{{ url_for('static', filename='images/project1.webp') }}"
-          alt="Automated POS-to-Financial Pipeline dashboard"
+          alt="{{ t.index.portfolio.c1_title }}"
           loading="lazy"
           width="600"
           height="380"
@@ -190,16 +162,9 @@
         <figcaption class="portfolio-card__label" aria-hidden="true">01</figcaption>
       </figure>
       <div class="portfolio-card__body">
-        <p class="portfolio-card__tag badge-label">Process Automation</p>
-        <h3 class="portfolio-card__title">Automated POS-to-Financial Pipeline</h3>
-        <p class="portfolio-card__description">
-          Retail operations teams were losing hours every week manually exporting point-of-sale
-          transaction files and re-keying data into their financial system. We eliminated the gap entirely.
-          A custom automation engine now runs on a scheduled cadence — pulling daily POS batch
-          summaries, normalising revenue categories, and pushing validated journal entries
-          directly into the Cloud ERP. Month-end close time reduced by <strong>70%</strong>.
-          Zero manual intervention required.
-        </p>
+        <p class="portfolio-card__tag badge-label">{{ t.index.portfolio.c1_tag }}</p>
+        <h3 class="portfolio-card__title">{{ t.index.portfolio.c1_title }}</h3>
+        <p class="portfolio-card__description">{{ t.index.portfolio.c1_desc | safe }}</p>
         <ul class="portfolio-card__meta" role="list" aria-label="Technologies used">
           <li>PowerShell</li>
           <li>Cloud ERP API</li>
@@ -209,28 +174,27 @@
         </ul>
         <dl class="portfolio-card__stats">
           <div>
-            <dt>Time Saved</dt>
-            <dd style="color: var(--accent-cyan);">70% faster close</dd>
+            <dt>{{ t.index.portfolio.c1_stat1_label }}</dt>
+            <dd style="color: var(--accent-cyan);">{{ t.index.portfolio.c1_stat1_value }}</dd>
           </div>
           <div>
-            <dt>Error Rate</dt>
-            <dd style="color: var(--accent-cyan);">0 manual entries</dd>
+            <dt>{{ t.index.portfolio.c1_stat2_label }}</dt>
+            <dd style="color: var(--accent-cyan);">{{ t.index.portfolio.c1_stat2_value }}</dd>
           </div>
         </dl>
-        <a href="{{ url_for('views.portfolio') }}"
-           class="portfolio-card__cta"
+        <a href="{{ url_for('views.portfolio') }}" class="portfolio-card__cta"
            style="color: var(--accent-cyan);">
-          Read Case Study <span aria-hidden="true">→</span>
+          {{ t.index.portfolio.c1_cta }} <span aria-hidden="true">→</span>
         </a>
       </div>
     </li>
 
-    <!-- Case Study 2: Lease Takeover Platform -->
+    <!-- Case Study 2 -->
     <li class="portfolio-card neon-border glass">
       <figure class="portfolio-card__media">
         <img
           src="{{ url_for('static', filename='images/project2.webp') }}"
-          alt="High-Performance Lease Takeover Platform interface"
+          alt="{{ t.index.portfolio.c2_title }}"
           loading="lazy"
           width="600"
           height="380"
@@ -238,16 +202,9 @@
         <figcaption class="portfolio-card__label" aria-hidden="true">02</figcaption>
       </figure>
       <div class="portfolio-card__body">
-        <p class="portfolio-card__tag badge-label">Web Platform</p>
-        <h3 class="portfolio-card__title">High-Performance Lease Takeover Platform</h3>
-        <p class="portfolio-card__description">
-          The Canadian lease takeover market lacked a modern, high-trust platform built for
-          the way buyers and sellers actually transact. We engineered a full-stack marketplace
-          purpose-built for the Canadian market — real-time lease listings, structured deal
-          flow between parties, and an admin back-office for compliance review. Built to
-          compete directly in the space dominated by LeaseBusters, with superior UX,
-          performance, and data integrity at its core.
-        </p>
+        <p class="portfolio-card__tag badge-label">{{ t.index.portfolio.c2_tag }}</p>
+        <h3 class="portfolio-card__title">{{ t.index.portfolio.c2_title }}</h3>
+        <p class="portfolio-card__description">{{ t.index.portfolio.c2_desc | safe }}</p>
         <ul class="portfolio-card__meta" role="list" aria-label="Technologies used">
           <li>Python / Flask</li>
           <li>PostgreSQL</li>
@@ -257,18 +214,17 @@
         </ul>
         <dl class="portfolio-card__stats">
           <div>
-            <dt>Market</dt>
-            <dd style="color: var(--accent-cyan);">Canada-wide</dd>
+            <dt>{{ t.index.portfolio.c2_stat1_label }}</dt>
+            <dd style="color: var(--accent-cyan);">{{ t.index.portfolio.c2_stat1_value }}</dd>
           </div>
           <div>
-            <dt>Stack</dt>
-            <dd style="color: var(--accent-cyan);">Full-stack SaaS</dd>
+            <dt>{{ t.index.portfolio.c2_stat2_label }}</dt>
+            <dd style="color: var(--accent-cyan);">{{ t.index.portfolio.c2_stat2_value }}</dd>
           </div>
         </dl>
-        <a href="{{ url_for('views.portfolio') }}"
-           class="portfolio-card__cta"
+        <a href="{{ url_for('views.portfolio') }}" class="portfolio-card__cta"
            style="color: var(--accent-cyan);">
-          Read Case Study <span aria-hidden="true">→</span>
+          {{ t.index.portfolio.c2_cta }} <span aria-hidden="true">→</span>
         </a>
       </div>
     </li>

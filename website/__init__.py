@@ -3,10 +3,10 @@
 import logging
 import os
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 from logging.handlers import RotatingFileHandler
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from flask_login import LoginManager
@@ -36,10 +36,10 @@ limiter = Limiter(
 login_manager.login_view = "auth.login"
 login_manager.login_message_category = "error"
 
-# Named logger for Sage Intacct / Veloce POS integration routes.
+# Named logger for financial-system integration routes.
 # Usage from any integration module:
 #   from website import integration_logger
-#   integration_logger.error("Sage Intacct sync failed: %s", exc)
+#   integration_logger.error("ERP sync failed: %s", exc)
 integration_logger = logging.getLogger("tekk.integrations")
 
 
@@ -167,6 +167,10 @@ def create_app() -> Flask:
     )
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
+    # Keep the language cookie alive for one year so users don't have to
+    # re-select on every visit.
+    app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(days=365)
+
     # CSRF — enabled globally; time limit prevents replay after session expiry.
     # React SPA API calls must include the X-CSRFToken header (see views.csrf_token).
     app.config["WTF_CSRF_TIME_LIMIT"] = 3600
@@ -184,6 +188,14 @@ def create_app() -> Flask:
 
     # Inject `now` into every template so the footer year is always current.
     app.jinja_env.globals["now"] = datetime.utcnow()
+
+    # Inject translations and active language into every template.
+    from .i18n import get_t
+
+    @app.context_processor
+    def inject_i18n():
+        lang = session.get("lang", "en")
+        return {"t": get_t(lang), "lang": lang}
 
     from .views import views as views_blueprint
     from .auth import auth as auth_blueprint
