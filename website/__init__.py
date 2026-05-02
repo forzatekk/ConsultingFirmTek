@@ -162,10 +162,40 @@ def create_app() -> Flask:
     app = Flask(__name__)
 
     app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "dev_key")
-    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get(
-        "DATABASE_URI", "sqlite:///db.sqlite3"
+
+    # Resolve database URL.
+    # Priority: DATABASE_URL (12-factor / Neon / Heroku standard)
+    #           DATABASE_URI (legacy local name)
+    #           SQLite dev fallback
+    _db_url = (
+        os.environ.get("DATABASE_URL")
+        or os.environ.get("DATABASE_URI", "sqlite:///db.sqlite3")
     )
+    # Neon and Heroku still emit postgres:// — SQLAlchemy 1.4+ requires postgresql://
+    if _db_url.startswith("postgres://"):
+        _db_url = _db_url.replace("postgres://", "postgresql://", 1)
+
+    app.config["SQLALCHEMY_DATABASE_URI"] = _db_url
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+    # Production connection pool — skip for SQLite (file-based, no network pool).
+    if _db_url.startswith("postgresql"):
+        app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
+            # Persistent connections kept open per worker process.
+            "pool_size": 5,
+            # Burst headroom; total max = pool_size + max_overflow = 15.
+            "max_overflow": 10,
+            # Seconds to wait for a slot before raising OperationalError.
+            "pool_timeout": 30,
+            # Recycle connections after 30 min — Neon evicts idle connections
+            # at ~5 min on the serverless tier; PgBouncer handles the rest.
+            "pool_recycle": 1800,
+            # Emit a lightweight SELECT 1 before handing a connection to the
+            # ORM; silently replaces any connection that was closed server-side.
+            "pool_pre_ping": True,
+            # Neon enforces TLS on all connections.
+            "connect_args": {"sslmode": "require"},
+        }
 
     # Keep the language cookie alive for one year so users don't have to
     # re-select on every visit.

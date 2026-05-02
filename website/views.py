@@ -87,8 +87,15 @@ def set_lang(lang):
 @views.route("/landing")
 @views.route("/landing/<path:filename>")
 def landing(filename="index.html"):
-    """Serve the built TEKK Solutions React SPA from static/portfolio/."""
+    """Serve the built TEKK Solutions React SPA from static/portfolio/.
+
+    Any path that doesn't map to a real asset (JS/CSS/images) falls back to
+    index.html so the React app can handle its own client-side routing.
+    """
     portfolio_dir = os.path.join(views.root_path, "static", "portfolio")
+    # SPA catch-all: return index.html for any route that isn't a bundled file.
+    if not os.path.isfile(os.path.join(portfolio_dir, filename)):
+        filename = "index.html"
     return send_from_directory(portfolio_dir, filename)
 
 

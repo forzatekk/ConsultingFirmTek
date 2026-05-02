@@ -6,3 +6,5 @@ Flask-WTF
 Flask-Limiter
 flask-talisman
 email-validator
+psycopg2-binary
+gunicorn
