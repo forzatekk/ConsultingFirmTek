@@ -1,1 +1,1 @@
-web: gunicorn "website:create_app()" -c gunicorn_config.py
+web: gunicorn wsgi:app -c gunicorn_config.py

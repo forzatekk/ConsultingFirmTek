@@ -6,10 +6,10 @@
 #  Platform setup
 #  ─────────────────────────────────────────────────────────────────────────────
 #  Render   Build Command : ./build.sh
-#           Start Command : gunicorn "website:create_app()" -c gunicorn_config.py
+#           Start Command : gunicorn wsgi:app -c gunicorn_config.py
 #
 #  Railway  Build Command : ./build.sh          (dashboard → Settings → Build)
-#           Start Command : gunicorn "website:create_app()" -c gunicorn_config.py
+#           Start Command : gunicorn wsgi:app -c gunicorn_config.py
 #
 #  VPS      Run manually or hook into a CI pipeline before restarting the
 #           systemd service.
@@ -254,5 +254,5 @@ echo -e "${GREEN}${BOLD}    Build complete — $(date)${NC}"
 echo -e "${GREEN}${BOLD}  ══════════════════════════════════════════${NC}"
 echo ""
 echo "  Flask static assets  →  website/static/portfolio/"
-echo "  To start the server  →  gunicorn \"website:create_app()\" -c gunicorn_config.py"
+echo "  To start the server  →  gunicorn wsgi:app -c gunicorn_config.py"
 echo ""
