@@ -209,7 +209,7 @@
     <div class="footer__bottom">
       <small>&copy; {{ now.year if now else 2025 }} TEKK Solutions Inc. All rights reserved.</small>
       <ul class="footer__legal" role="list">
-        <li><a href="#" class="footer__link">{{ t.footer.privacy }}</a></li>
+        <li><a href="{{ url_for('views.privacy') }}" class="footer__link">{{ t.footer.privacy }}</a></li>
         <li><a href="#" class="footer__link">{{ t.footer.terms }}</a></li>
       </ul>
     </div>

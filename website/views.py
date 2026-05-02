@@ -32,6 +32,11 @@ def about():
     return render_template("about.html")
 
 
+@views.route("/privacy")
+def privacy():
+    return render_template("privacy.html", last_updated="2 May 2026")
+
+
 @views.route("/services")
 def services():
     return render_template("services.html")

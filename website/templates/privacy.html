@@ -1,0 +1,510 @@
+{% extends "base.html" %}
+
+{% block title %}Privacy Policy – TEKK Solutions{% endblock %}
+{% block meta_description %}TEKK Solutions privacy policy. Compliant with Quebec Law 25 (Act Respecting the Protection of Personal Information). Privacy Officer: Tarek El Tayeh.{% endblock %}
+{% block meta_robots %}noindex, follow{% endblock %}
+
+{% block content %}
+<section class="privacy-page" aria-labelledby="privacy-heading">
+
+  {# ── PAGE HEADER ─────────────────────────────────────────────────── #}
+  <div style="text-align:center; margin-bottom: var(--space-10);">
+    <p class="badge-label" style="justify-content:center;">
+      <span aria-hidden="true">—</span> Law 25 / LPRPSP Compliance <span aria-hidden="true">—</span>
+    </p>
+    <h1 id="privacy-heading"
+        class="section__title text-gradient"
+        style="margin-top: var(--space-3);">
+      Privacy Policy
+    </h1>
+    <p style="font-size: var(--text-sm); color: var(--text-muted); margin-top: var(--space-3);">
+      Last updated: <time datetime="2026-05-02">{{ last_updated }}</time>
+      &nbsp;·&nbsp;
+      <em>Cette politique est aussi disponible en français sur demande —
+        <a href="mailto:hello@tekksolutions.ca" style="color:var(--accent-cyan);">hello@tekksolutions.ca</a>
+      </em>
+    </p>
+  </div>
+
+  <div class="cyber-divider" aria-hidden="true" style="margin-bottom: var(--space-8);"></div>
+
+
+  {# ── PRIVACY OFFICER CARD ─────────────────────────────────────────── #}
+  <div class="privacy-officer glass neon-border" role="region" aria-label="Privacy Officer">
+    <div>
+      <p class="privacy-officer__meta">Designated Privacy Officer under Quebec Law 25</p>
+      <p class="privacy-officer__name">Tarek El Tayeh</p>
+      <p class="privacy-officer__role">Privacy Officer &amp; Managing Director — TEKK Solutions Inc.</p>
+      <a href="mailto:hello@tekksolutions.ca" class="privacy-officer__email">
+        hello@tekksolutions.ca
+      </a>
+      <p style="font-size: var(--text-xs); color: var(--text-muted); margin-top: var(--space-3);">
+        To exercise any right under this policy, send a written request to the address above.
+        We will respond within <strong style="color:var(--text-secondary);">30 days</strong>
+        as required by the <em>Act respecting the protection of personal information in the
+        private sector</em> (LPRPSP), R.S.Q., c. P-39.1, as amended by Law 25.
+      </p>
+    </div>
+    <div class="privacy-officer__badge">
+      <div class="privacy-officer__badge-icon" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <path d="M14 3 L24 7.5 V14.5 C24 19.5 19.5 24 14 25.5 C8.5 24 4 19.5 4 14.5 V7.5 Z"
+                stroke="#00f2ff" stroke-width="1.4" fill="rgba(0,242,255,0.05)"/>
+          <path d="M9 14 L12.5 17.5 L19 11"
+                stroke="#00f2ff" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <small>Law 25<br />Certified</small>
+    </div>
+  </div>
+
+
+  {# ── 1. SCOPE ─────────────────────────────────────────────────────── #}
+  <div class="privacy-section glass">
+    <p class="privacy-section__label">01</p>
+    <h2>Scope &amp; Application</h2>
+    <p>
+      This Privacy Policy governs how <strong>TEKK Solutions Inc.</strong> ("TEKK Solutions",
+      "we", "us") collects, uses, retains, and discloses personal information in connection
+      with our consulting services, website (<strong>tekksolutions.ca</strong>), client portal,
+      and any data-processing mandates we carry out on behalf of clients.
+    </p>
+    <p>
+      TEKK Solutions is subject to <strong>Quebec's Law 25</strong> (An Act to modernize
+      legislative provisions as regards the protection of personal information, S.Q. 2021,
+      c. 25) and the federal <em>Personal Information Protection and Electronic Documents Act</em>
+      (PIPEDA) where applicable.
+    </p>
+    <p>
+      This policy applies to all individuals whose personal information we handle, including
+      website visitors, contact form submitters, registered client-portal users, and
+      individuals whose data is processed through our financial integration mandates.
+    </p>
+  </div>
+
+
+  {# ── 2. INFORMATION WE COLLECT ────────────────────────────────────── #}
+  <div class="privacy-section glass">
+    <p class="privacy-section__label">02</p>
+    <h2>Information We Collect</h2>
+    <p>We collect only the information necessary to deliver our services and operate this website.</p>
+    <ul>
+      <li>
+        <strong>Contact form:</strong> name, email address, and the message content you submit.
+        No additional personal data is requested or required.
+      </li>
+      <li>
+        <strong>Client portal registration:</strong> email address and a hashed password.
+        We never store passwords in plain text.
+      </li>
+      <li>
+        <strong>Client portal usage:</strong> uploaded documents and files you share with our team,
+        and the date/time of upload.
+      </li>
+      <li>
+        <strong>Server logs:</strong> IP address, browser type, and requested URL — retained for
+        security and debugging purposes only, for a maximum of 30 days.
+      </li>
+      <li>
+        <strong>Financial integration mandates:</strong> when engaged to build data pipelines,
+        we process client-owned operational and financial data (see Section 3 below). This data
+        belongs to the client and is never retained by TEKK Solutions beyond the active mandate.
+      </li>
+    </ul>
+    <p>
+      We do <strong>not</strong> collect sensitive personal information (SIN, health data,
+      biometric data, financial credentials) through this website. We do not purchase,
+      rent, or otherwise acquire personal data from third-party data brokers.
+    </p>
+  </div>
+
+
+  {# ── 3. FINANCIAL DATA PIPELINES ──────────────────────────────────── #}
+  <div class="privacy-section glass neon-border">
+    <p class="privacy-section__label">03</p>
+    <h2>Financial Data Pipelines &amp; Client Data Processing</h2>
+    <p>
+      TEKK Solutions designs and operates automated data pipelines that transfer operational
+      data (e.g., point-of-sale transaction records) into enterprise financial systems.
+      When performing this work, we act as a <strong>data processor</strong> on behalf of
+      the client, who remains the <strong>data controller</strong> for all personal information
+      within those systems.
+    </p>
+
+    <div class="privacy-pipeline" aria-label="Data flow: Point-of-Sale to Financial System">
+      <span>Point-of-Sale Platform</span>
+      <span class="privacy-pipeline__arrow">→</span>
+      <span>Encrypted Transport (TLS 1.3)</span>
+      <span class="privacy-pipeline__arrow">→</span>
+      <span>Transformation Engine</span>
+      <span class="privacy-pipeline__arrow">→</span>
+      <span>Enterprise Financial System</span>
+    </div>
+
+    <p>The following data-handling principles apply to all pipeline mandates:</p>
+    <ul>
+      <li>
+        <strong>Data minimisation:</strong> pipelines are scoped to process only the fields
+        required for accurate financial reporting. No personal data beyond transaction
+        identifiers and amounts is extracted unless explicitly mandated by the client.
+      </li>
+      <li>
+        <strong>End-to-end encryption:</strong> all data in transit is encrypted using
+        TLS 1.3. Credentials and API keys are stored in environment variables — never in
+        source code or version control.
+      </li>
+      <li>
+        <strong>No retention by TEKK Solutions:</strong> processed records are written
+        directly to the client's target system. TEKK Solutions does not maintain a
+        secondary copy of client transactional or financial data.
+      </li>
+      <li>
+        <strong>No third-party disclosure:</strong> client data processed through our
+        pipelines is never sold, shared, licensed, or disclosed to any third party.
+        It is used solely to fulfil the client's specific integration mandate.
+      </li>
+      <li>
+        <strong>Structured error logging:</strong> pipeline logs record operation status
+        and error codes only — not the financial data itself. Logs are retained for
+        30 days and then purged automatically.
+      </li>
+      <li>
+        <strong>Contractual safeguards:</strong> all pipeline mandates are governed by a
+        written data-processing agreement (DPA) that specifies the scope, retention limits,
+        and security obligations of both parties, in compliance with Law 25, s. 18.3.
+      </li>
+    </ul>
+  </div>
+
+
+  {# ── 4. COOKIES & SESSION DATA ────────────────────────────────────── #}
+  <div class="privacy-section glass">
+    <p class="privacy-section__label">04</p>
+    <h2>Cookies &amp; Session Data</h2>
+    <p>
+      This website uses only <strong>strictly necessary cookies</strong>. We do not use
+      advertising cookies, tracking pixels, or third-party analytics platforms.
+    </p>
+    <ul>
+      <li>
+        <strong>Authentication session cookie</strong> (Flask-Login) — created when you log in
+        to the client portal. It is a <em>session cookie</em> (expires when the browser closes)
+        or a <em>persistent cookie</em> if you select "remember me". It contains a
+        cryptographically signed session token; no personal data is stored in the cookie itself.
+        Legal basis: contract performance (Art. 12, LPRPSP).
+      </li>
+      <li>
+        <strong>Language preference cookie</strong> (Flask session) — stores your selected
+        language (EN or FR) as a single string. It persists for 365 days so your preference
+        is remembered on return visits.
+        Legal basis: legitimate interest (improving user experience, Bill 96 compliance).
+      </li>
+      <li>
+        <strong>CSRF protection token</strong> (Flask-WTF) — a cryptographic token included
+        in every form to prevent cross-site request forgery. It is a session cookie and
+        does not contain personal data.
+        Legal basis: security obligation (Law 25, s. 37).
+      </li>
+    </ul>
+    <p>
+      All session cookies are flagged <code>HttpOnly</code> (inaccessible to JavaScript),
+      <code>SameSite=Lax</code> (mitigates CSRF), and <code>Secure</code> in production
+      (transmitted over HTTPS only).
+    </p>
+    <p>
+      You may clear all cookies through your browser settings at any time. Clearing the
+      authentication cookie will log you out of the client portal.
+    </p>
+  </div>
+
+
+  {# ── 5. DATA RETENTION ────────────────────────────────────────────── #}
+  <div class="privacy-section glass">
+    <p class="privacy-section__label">05</p>
+    <h2>Data Retention</h2>
+    <p>
+      We retain personal information only for as long as required to fulfil the purpose
+      for which it was collected, or as required by law.
+    </p>
+    <ul>
+      <li>
+        <strong>Contact form submissions:</strong> retained for a maximum of 12 months from
+        the date of submission, or for the duration of any resulting business relationship.
+      </li>
+      <li>
+        <strong>Client portal accounts:</strong> account data is retained for the duration of
+        the active engagement plus 24 months. You may request deletion at any time (see
+        Section 8 — Your Rights).
+      </li>
+      <li>
+        <strong>Server access logs:</strong> retained for 30 days, then automatically purged.
+      </li>
+      <li>
+        <strong>Pipeline error logs:</strong> retained for 30 days per mandate cycle, then purged.
+      </li>
+      <li>
+        <strong>Client financial pipeline data:</strong> not retained by TEKK Solutions
+        beyond the active pipeline execution cycle (see Section 3).
+      </li>
+    </ul>
+    <p>
+      When personal information is no longer required and the retention period has elapsed,
+      it is securely destroyed using industry-standard deletion methods. Electronic data
+      is overwritten or cryptographically erased; physical documents are cross-cut shredded.
+    </p>
+  </div>
+
+
+  {# ── 6. THIRD-PARTY SERVICES ──────────────────────────────────────── #}
+  <div class="privacy-section glass">
+    <p class="privacy-section__label">06</p>
+    <h2>Third-Party Services &amp; Sub-Processors</h2>
+    <p>
+      TEKK Solutions uses a minimal set of third-party services. We conduct privacy impact
+      assessments (PIAs) before engaging any new processor, as required by Law 25, s. 63.3.
+    </p>
+    <ul>
+      <li>
+        <strong>Web hosting &amp; infrastructure:</strong> our production environment is hosted
+        on cloud infrastructure with data-centre locations in Canada (preferred) or within
+        jurisdictions providing equivalent legal protection. A data-residency clause is
+        included in all hosting contracts.
+      </li>
+      <li>
+        <strong>Google Fonts:</strong> the website loads typefaces (Inter, JetBrains Mono) from
+        Google Fonts. This request exposes your IP address to Google. No cookies are set by
+        Google Fonts. If you prefer, you may use a browser extension to block font requests.
+      </li>
+      <li>
+        <strong>No analytics, advertising, or social-media trackers:</strong> we do not
+        integrate Google Analytics, Meta Pixel, LinkedIn Insight Tag, or any comparable
+        third-party tracking tool on this website.
+      </li>
+      <li>
+        <strong>No sale of personal data:</strong> TEKK Solutions does not sell, licence,
+        or otherwise commercialise any personal information we hold, under any circumstances.
+      </li>
+    </ul>
+  </div>
+
+
+  {# ── 7. SECURITY MEASURES ─────────────────────────────────────────── #}
+  <div class="privacy-section glass">
+    <p class="privacy-section__label">07</p>
+    <h2>Security Measures</h2>
+    <p>
+      We implement appropriate technical and organisational measures to protect personal
+      information against unauthorised access, disclosure, alteration, and destruction,
+      in accordance with Law 25, s. 37.
+    </p>
+    <ul>
+      <li>HTTPS / TLS 1.3 enforced on all connections; HTTP Strict Transport Security (HSTS) enabled.</li>
+      <li>Passwords hashed using a strong, salted algorithm (bcrypt/Werkzeug PBKDF2).</li>
+      <li>Content Security Policy (CSP) headers prevent code injection attacks.</li>
+      <li>CSRF tokens on every form submission.</li>
+      <li>Rate limiting on login, signup, and contact endpoints to mitigate brute-force attacks.</li>
+      <li>Rotating file-based application logs with access restricted to authorised personnel.</li>
+      <li>Environment variables used for all secrets — no credentials in source code.</li>
+      <li>Regular dependency audits and security patching.</li>
+    </ul>
+    <p>
+      In the event of a privacy breach that presents a risk of serious injury, we will notify
+      both the <strong>Commission d'accès à l'information (CAI)</strong> and all affected
+      individuals within <strong>72 hours</strong> of becoming aware of the breach, in
+      accordance with Law 25, s. 3.5 (amending s. 63.7 LPRPSP).
+    </p>
+  </div>
+
+
+  {# ── 8. YOUR RIGHTS UNDER LAW 25 ─────────────────────────────────── #}
+  <div class="privacy-section glass neon-border">
+    <p class="privacy-section__label">08</p>
+    <h2>Your Rights Under Quebec Law 25</h2>
+    <p>
+      As a Quebec resident, you hold the following rights with respect to your personal
+      information. To exercise any right, contact our Privacy Officer at
+      <a href="mailto:hello@tekksolutions.ca"
+         style="color:var(--accent-cyan);">hello@tekksolutions.ca</a>.
+      We will acknowledge your request within <strong>5 business days</strong> and respond
+      fully within <strong>30 days</strong> (extendable to 60 days with notice).
+    </p>
+
+    <div class="privacy-rights-grid" role="list">
+
+      <div class="privacy-right-card glass" role="listitem">
+        <div class="privacy-right-card__icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="8" r="4" stroke="#00f2ff" stroke-width="1.5"/>
+            <path d="M4 20 C4 16.5 7.5 14 12 14 C16.5 14 20 16.5 20 20"
+                  stroke="#00f2ff" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Right of Access</h3>
+        <p>
+          You may request a copy of all personal information we hold about you, the sources
+          from which it was collected, the purposes for which it is used, and any third
+          parties to whom it has been communicated. (LPRPSP, s. 27)
+        </p>
+      </div>
+
+      <div class="privacy-right-card glass" role="listitem">
+        <div class="privacy-right-card__icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M4 20 L8 16 L19 5" stroke="#00f2ff" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M14 5 L19 5 L19 10" stroke="#00f2ff" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Right to Rectification</h3>
+        <p>
+          If information we hold about you is inaccurate, incomplete, ambiguous, or
+          outdated, you may request that it be corrected. Corrections will be made
+          promptly and communicated to any party who received the incorrect data.
+          (LPRPSP, s. 28)
+        </p>
+      </div>
+
+      <div class="privacy-right-card glass" role="listitem">
+        <div class="privacy-right-card__icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M4 7 H20 M9 7 V5 H15 V7 M10 12 V17 M14 12 V17 M5 7 L6 19 C6 20.1 6.9 21 8 21 H16 C17.1 21 18 20.1 18 19 L19 7"
+                  stroke="#00f2ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Right to Deletion</h3>
+        <p>
+          You may request that we delete your personal information when it is no longer
+          necessary for the purposes collected, when you withdraw consent, or when
+          collection was unlawful. Deletion requests are subject to any legal retention
+          obligations. (LPRPSP, s. 28.1)
+        </p>
+      </div>
+
+      <div class="privacy-right-card glass" role="listitem">
+        <div class="privacy-right-card__icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="3" width="8" height="8" rx="1.5" stroke="#00f2ff" stroke-width="1.5"/>
+            <rect x="13" y="3" width="8" height="8" rx="1.5" stroke="#00b4cc" stroke-width="1.5" opacity="0.7"/>
+            <path d="M7 11 V16 M17 11 V16 M4 16 H20"
+                  stroke="#00f2ff" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Right to Portability</h3>
+        <p>
+          You may request that computerised personal information collected from you be
+          communicated in a structured, commonly used technological format, either to
+          you or to a person or body you designate. (LPRPSP, s. 27, as amended by
+          Law 25, s. 107)
+        </p>
+      </div>
+
+      <div class="privacy-right-card glass" role="listitem">
+        <div class="privacy-right-card__icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="9" stroke="#00f2ff" stroke-width="1.5"/>
+            <line x1="12" y1="8" x2="12" y2="12.5" stroke="#00f2ff" stroke-width="1.75" stroke-linecap="round"/>
+            <circle cx="12" cy="15.5" r="1" fill="#00f2ff"/>
+          </svg>
+        </div>
+        <h3>Right to Withdraw Consent</h3>
+        <p>
+          Where processing is based on your consent, you may withdraw that consent at
+          any time without affecting the lawfulness of processing prior to withdrawal.
+          Withdrawal may limit your ability to use certain features of our services.
+          (LPRPSP, s. 14)
+        </p>
+      </div>
+
+      <div class="privacy-right-card glass" role="listitem">
+        <div class="privacy-right-card__icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M12 3 L20 7 V12 C20 16.4 16.5 20.5 12 21.9 C7.5 20.5 4 16.4 4 12 V7 Z"
+                  stroke="#00f2ff" stroke-width="1.5" fill="rgba(0,242,255,0.05)"/>
+            <path d="M8.5 12.5 L11 15 L16 10"
+                  stroke="#00f2ff" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Right to File a Complaint</h3>
+        <p>
+          If you believe your rights have not been respected, you may file a complaint with
+          the <strong>Commission d'accès à l'information (CAI)</strong>:
+          <br />
+          <a href="https://www.cai.gouv.qc.ca" target="_blank" rel="noopener noreferrer"
+             style="color:var(--accent-teal);">cai.gouv.qc.ca</a>
+          &nbsp;·&nbsp; 1-888-528-7741
+        </p>
+      </div>
+
+    </div>{# /.privacy-rights-grid #}
+  </div>
+
+
+  {# ── 9. CHILDREN'S PRIVACY ────────────────────────────────────────── #}
+  <div class="privacy-section glass">
+    <p class="privacy-section__label">09</p>
+    <h2>Children's Privacy</h2>
+    <p>
+      Our services are directed exclusively at businesses and professionals. We do not
+      knowingly collect personal information from individuals under the age of 14.
+      If we become aware that personal information belonging to a child under 14 has been
+      submitted without verifiable parental consent, we will delete it promptly.
+    </p>
+    <p>
+      Parents or guardians who believe a child's information has been collected may contact
+      our Privacy Officer at
+      <a href="mailto:hello@tekksolutions.ca" style="color:var(--accent-cyan);">
+        hello@tekksolutions.ca
+      </a>.
+    </p>
+  </div>
+
+
+  {# ── 10. CHANGES TO THIS POLICY ───────────────────────────────────── #}
+  <div class="privacy-section glass">
+    <p class="privacy-section__label">10</p>
+    <h2>Updates to This Policy</h2>
+    <p>
+      We may update this Privacy Policy from time to time to reflect changes in our
+      practices, legal requirements, or the services we offer. The "Last updated" date
+      at the top of this page will be revised accordingly.
+    </p>
+    <p>
+      Where changes are material, we will notify registered client-portal users by email
+      at least <strong>14 days</strong> before the changes take effect.
+      Continued use of our services after the effective date constitutes acceptance of the
+      revised policy.
+    </p>
+    <p>
+      Previous versions of this policy are available upon written request to our
+      Privacy Officer.
+    </p>
+  </div>
+
+
+  {# ── 11. CONTACT ──────────────────────────────────────────────────── #}
+  <div class="privacy-section glass neon-border" style="text-align:center;">
+    <p class="privacy-section__label" style="justify-content:center; display:flex;">11</p>
+    <h2 style="justify-content:center; display:block;">Contact Our Privacy Officer</h2>
+    <p style="max-width:480px; margin: 0 auto var(--space-6);">
+      For any question, request, or concern regarding your personal information or this
+      policy, reach out directly to our designated Privacy Officer.
+    </p>
+    <p style="font-family: var(--font-mono); font-size: var(--text-lg); margin-bottom: var(--space-6);">
+      <a href="mailto:hello@tekksolutions.ca" style="color:var(--accent-cyan);">
+        hello@tekksolutions.ca
+      </a>
+    </p>
+    <p style="font-size: var(--text-xs); color: var(--text-muted); max-width:440px; margin:0 auto;">
+      <strong style="color:var(--text-secondary);">TEKK Solutions Inc.</strong><br />
+      Montréal, Québec, Canada<br />
+      Privacy Officer: Tarek El Tayeh<br />
+      Response time: within 30 days as required by Law 25.
+    </p>
+    <div style="margin-top: var(--space-8);">
+      <a href="{{ url_for('views.contact') }}" class="btn btn--outline btn--sm">
+        Send a Message →
+      </a>
+    </div>
+  </div>
+
+</section>
+{% endblock %}
